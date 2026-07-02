@@ -1,4 +1,5 @@
 import SpotlightBackground from "@/components/ui/spotlight-background";
+import { AuthModal } from "@/components/AuthModal";
 import { Navbar } from "@/components/Navbar";
 import { FloatingMenu } from "@/components/FloatingMenu";
 import { Hero } from "@/components/sections/Hero";
@@ -28,6 +29,7 @@ export default function App() {
       </main>
       <Footer />
       <FloatingMenu />
+      <AuthModal />
     </div>
   );
 }

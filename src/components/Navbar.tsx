@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { GlassButton } from "@/components/ui/glass-button";
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/ui/dock";
+import { UserMenu } from "@/components/UserMenu";
 import { useLang } from "@/i18n/LanguageProvider";
 import { siteConfig, brandInitials } from "@/config";
 
@@ -89,6 +90,8 @@ export function Navbar() {
               <Globe className="h-4 w-4" />
               {t.langToggle}
             </button>
+
+            <UserMenu />
 
             <a href="#contact" className="hidden md:block">
               <GlassButton className="glass-primary" size="sm">

@@ -192,6 +192,8 @@ export interface PricingCardProps {
   period?: string;
   /** Text for the "popular" badge. */
   popularText?: string;
+  /** Called when the plan's button is clicked. */
+  onSelect?: () => void;
 }
 
 /**
@@ -199,7 +201,7 @@ export interface PricingCardProps {
  */
 export const PricingCard = ({
   planName, description, price, features, buttonText, isPopular = false, buttonVariant = 'primary',
-  currency = '$', period = '/mo', popularText = 'Most Popular',
+  currency = '$', period = '/mo', popularText = 'Most Popular', onSelect,
 }: PricingCardProps) => {
   const cardClasses = `
     backdrop-blur-[14px] bg-gradient-to-br rounded-2xl shadow-xl flex-1 max-w-xs px-7 py-8 flex flex-col transition-all duration-300
@@ -238,7 +240,7 @@ export const PricingCard = ({
           </li>
         ))}
       </ul>
-      <RippleButton className={buttonClasses.trim()}>{buttonText}</RippleButton>
+      <RippleButton className={buttonClasses.trim()} onClick={onSelect}>{buttonText}</RippleButton>
     </div>
   );
 };

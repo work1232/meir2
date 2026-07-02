@@ -52,6 +52,30 @@ export type Content = {
     cta: string;
     plans: { name: string; price: string; tagline: string; features: string[]; featured?: boolean }[];
     note: string;
+    waTemplate: string;
+    loginToChoose: string;
+  };
+  auth: {
+    signIn: string;
+    signUp: string;
+    signInTitle: string;
+    signUpTitle: string;
+    signInSubtitle: string;
+    signUpSubtitle: string;
+    name: string;
+    email: string;
+    phone: string;
+    password: string;
+    submitSignIn: string;
+    submitSignUp: string;
+    toggleToSignUp: string;
+    toggleToSignIn: string;
+    logout: string;
+    myProfile: string;
+    account: string;
+    errExists: string;
+    errInvalid: string;
+    errFields: string;
   };
   contact: {
     kicker: string;
@@ -191,6 +215,31 @@ export const translations: Record<Lang, Content> = {
         },
       ],
       note: "לא בטוחים מה מתאים? ספרו לי על הפרויקט ואבנה הצעה מדויקת.",
+      waTemplate:
+        'היי מאיר! שמי {name} ואני מעוניין/ת בחבילת "{plan}" ({price}). אשמח לשמוע פרטים 🙌',
+      loginToChoose: "התחברו כדי לבחור חבילה",
+    },
+    auth: {
+      signIn: "התחברות",
+      signUp: "הרשמה",
+      signInTitle: "התחברות",
+      signUpTitle: "יצירת חשבון",
+      signInSubtitle: "התחברו כדי לבחור חבילה ולפנות אליי בוואטסאפ.",
+      signUpSubtitle: "הירשמו בשניות — כדי לבחור חבילה ולשמור את הפרטים שלכם.",
+      name: "שם מלא",
+      email: "אימייל",
+      phone: "טלפון",
+      password: "סיסמה",
+      submitSignIn: "התחברות",
+      submitSignUp: "יצירת חשבון",
+      toggleToSignUp: "אין לכם חשבון? הרשמה",
+      toggleToSignIn: "כבר רשומים? התחברות",
+      logout: "התנתקות",
+      myProfile: "הפרופיל שלי",
+      account: "חשבון",
+      errExists: "האימייל הזה כבר רשום — נסו להתחבר.",
+      errInvalid: "אימייל או סיסמה שגויים.",
+      errFields: "נא למלא את כל השדות.",
     },
     contact: {
       kicker: "בואו נתחיל",
@@ -332,6 +381,31 @@ export const translations: Record<Lang, Content> = {
         },
       ],
       note: "Not sure which fits? Tell me about the project and I'll craft an exact quote.",
+      waTemplate:
+        'Hi Meir! I\'m {name} and I\'m interested in the "{plan}" plan ({price}). Would love to hear more 🙌',
+      loginToChoose: "Sign in to choose a plan",
+    },
+    auth: {
+      signIn: "Sign in",
+      signUp: "Sign up",
+      signInTitle: "Welcome back",
+      signUpTitle: "Create an account",
+      signInSubtitle: "Sign in to choose a plan and reach me on WhatsApp.",
+      signUpSubtitle: "Sign up in seconds — to pick a plan and save your details.",
+      name: "Full name",
+      email: "Email",
+      phone: "Phone",
+      password: "Password",
+      submitSignIn: "Sign in",
+      submitSignUp: "Create account",
+      toggleToSignUp: "No account yet? Sign up",
+      toggleToSignIn: "Already registered? Sign in",
+      logout: "Log out",
+      myProfile: "My profile",
+      account: "Account",
+      errExists: "That email is already registered — try signing in.",
+      errInvalid: "Wrong email or password.",
+      errFields: "Please fill in all fields.",
     },
     contact: {
       kicker: "Let's start",
