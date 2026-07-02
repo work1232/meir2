@@ -249,14 +249,18 @@
     position: absolute;
     inset: -15%;
     overflow: hidden;
-    filter: blur(72px) saturate(135%);
   }
 
   .spotlight {
     position: absolute;
     border-radius: 9999px;
     mix-blend-mode: screen;
+    /* Blur each blob (not the whole overlay) + will-change: the browser caches
+       the blurred layer and only transforms it — no per-frame re-blur = far
+       less GPU work while the bubbles drift. */
+    filter: blur(40px);
     will-change: transform;
+    transform: translateZ(0);
   }
 
   .spotlight-left {

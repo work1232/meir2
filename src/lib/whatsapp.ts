@@ -6,7 +6,8 @@ import { siteConfig } from "@/config";
  * by popup blockers.
  */
 export function openWhatsApp(message: string) {
-  const phone = siteConfig.whatsapp.replace(/\D/g, "");
+  // International number WITH the leading "+", e.g. +972543821419.
+  const phone = "+" + siteConfig.whatsapp.replace(/\D/g, "");
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   const a = document.createElement("a");
   a.href = url;

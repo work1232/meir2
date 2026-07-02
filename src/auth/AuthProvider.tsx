@@ -65,7 +65,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setAuthOpen(false);
     const after = afterRef.current;
     afterRef.current = null;
-    if (after) setTimeout(() => after(account), 80);
+    // Run synchronously so it stays inside the click gesture (otherwise the
+    // browser blocks opening WhatsApp as a popup).
+    if (after) after(account);
   }, []);
 
   const signUp = useCallback(

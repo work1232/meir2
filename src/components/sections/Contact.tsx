@@ -4,6 +4,7 @@ import { GlassButton } from "@/components/ui/glass-button";
 import { BackgroundVideo } from "@/components/BackgroundVideo";
 import { useLang } from "@/i18n/LanguageProvider";
 import { siteConfig } from "@/config";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 export function Contact() {
   const { t } = useLang();
@@ -35,18 +36,8 @@ export function Contact() {
     // Require the fields to be filled (shows the native validation bubble).
     if (formRef.current && !formRef.current.reportValidity()) return;
 
-    // Digits only, e.g. "972543821419" (no +, no spaces/dashes).
-    const phone = siteConfig.whatsapp.replace(/\D/g, "");
     const lines = [message, "", `— ${name}`, email].filter(Boolean).join("\n");
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(lines)}`;
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    openWhatsApp(lines);
 
     setSent(true);
   };

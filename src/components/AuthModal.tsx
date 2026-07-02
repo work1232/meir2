@@ -30,8 +30,7 @@ export function AuthModal() {
     return () => window.removeEventListener("keydown", onKey);
   }, [authOpen, closeAuth]);
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const submit = () => {
     setError("");
     if (isSignUp) {
       if (!name.trim() || !email.trim() || !phone.trim() || !password) {
@@ -48,6 +47,12 @@ export function AuthModal() {
       const res = signIn(email, password);
       if (!res.ok) setError(t.auth.errInvalid);
     }
+  };
+
+  // Enter key inside a field still submits.
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    submit();
   };
 
   const inputClass =
@@ -158,7 +163,8 @@ export function AuthModal() {
               )}
 
               <GlassButton
-                type="submit"
+                type="button"
+                onClick={submit}
                 className="glass-primary mt-2 w-full"
                 size="lg"
                 contentClassName="w-full text-center"
