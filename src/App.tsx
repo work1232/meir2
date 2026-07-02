@@ -18,7 +18,7 @@ export default function App() {
       <SpotlightBackground />
 
       <Navbar />
-      <main>
+      <main className="overflow-x-clip">
         <Hero />
         <Marquee />
         <About />

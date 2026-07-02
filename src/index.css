@@ -266,8 +266,9 @@
   .spotlight-left {
     top: 46%;
     left: 22%;
-    width: 46vw;
-    height: 46vw;
+    /* Cap the size so it doesn't render huge (and expensive) on big screens. */
+    width: min(46vw, 520px);
+    height: min(46vw, 520px);
     background: radial-gradient(
       circle at center,
       rgba(99, 91, 255, 0.55) 0%,
@@ -278,8 +279,8 @@
   .spotlight-mid {
     top: 30%;
     left: 54%;
-    width: 42vw;
-    height: 42vw;
+    width: min(42vw, 480px);
+    height: min(42vw, 480px);
     background: radial-gradient(
       circle at center,
       rgba(139, 92, 246, 0.5) 0%,
@@ -290,8 +291,8 @@
   .spotlight-right {
     top: 58%;
     left: 60%;
-    width: 52vw;
-    height: 52vw;
+    width: min(52vw, 560px);
+    height: min(52vw, 560px);
     background: radial-gradient(
       circle at center,
       rgba(124, 84, 255, 0.45) 0%,

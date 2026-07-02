@@ -144,8 +144,13 @@ export const ShaderCanvas = () => {
     };
     const handleResize = () => {
       const parent = canvas.parentElement;
-      canvas.width = parent?.clientWidth ?? window.innerWidth;
-      canvas.height = parent?.clientHeight ?? window.innerHeight;
+      const w = parent?.clientWidth ?? window.innerWidth;
+      const h = parent?.clientHeight ?? window.innerHeight;
+      // Render at a capped internal resolution (CSS scales it up). Far fewer
+      // fragment-shader pixels on large screens = much less GPU work.
+      const scale = Math.min(1, 900 / Math.max(w, 1));
+      canvas.width = Math.max(1, Math.round(w * scale));
+      canvas.height = Math.max(1, Math.round(h * scale));
       gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
     };
     handleResize();
