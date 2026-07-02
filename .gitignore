@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# Vite cache
+.vite/
+*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Loose source media in the project ROOT — these are duplicates of the files
+# in /public (the site serves everything from /public), so they don't need to
+# be in the repo. Delete these lines if you WANT to back up the originals.
+/*.mp4
+/*.jpg
+/*.jpeg
+/*.png
+/*.JPG

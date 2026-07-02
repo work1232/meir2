@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Premium Agency</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+font-family:Heebo,sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(135deg,#050816,#09111f,#020202);
+
+color:white;
+overflow-x:hidden;
+
+}
+
+body::before{
+
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+background:#0055ff33;
+filter:blur(170px);
+top:-250px;
+left:-250px;
+animation:move1 14s infinite alternate;
+z-index:-2;
+
+}
+
+body::after{
+
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+background:#7b00ff22;
+filter:blur(170px);
+bottom:-250px;
+right:-250px;
+animation:move2 16s infinite alternate;
+z-index:-2;
+
+}
+
+@keyframes move1{
+
+100%{
+
+transform:translate(250px,200px);
+
+}
+
+}
+
+@keyframes move2{
+
+100%{
+
+transform:translate(-250px,-170px);
+
+}
+
+}
+
+header{
+
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+backdrop-filter:blur(18px);
+background:rgba(255,255,255,.05);
+border-bottom:1px solid rgba(255,255,255,.08);
+z-index:999;
+
+}
+
+.logo{
+
+font-size:28px;
+font-weight:900;
+letter-spacing:2px;
+
+}
+
+nav a{
+
+text-decoration:none;
+color:white;
+margin:0 15px;
+transition:.4s;
+
+}
+
+nav a:hover{
+
+color:#61a9ff;
+
+}
+
+.hero{
+
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:0 10%;
+
+}
+
+.hero-content{
+
+max-width:900px;
+
+}
+
+.hero h1{
+
+font-size:70px;
+font-weight:900;
+line-height:1.2;
+margin-bottom:25px;
+
+}
+
+.hero p{
+
+font-size:22px;
+color:#c9d5ff;
+margin-bottom:40px;
+
+}
+
+.buttons{
+
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+padding:18px 40px;
+border-radius:60px;
+text-decoration:none;
+font-weight:bold;
+transition:.4s;
+
+}
+
+.primary{
+
+background:linear-gradient(135deg,#2f8fff,#0058ff);
+color:white;
+
+}
+
+.primary:hover{
+
+transform:translateY(-5px);
+box-shadow:0 0 35px #3e9cff;
+
+}
+
+.secondary{
+
+border:1px solid rgba(255,255,255,.25);
+color:white;
+
+}
+
+.secondary:hover{
+
+background:white;
+color:black;
+
+}
+
+section{
+
+padding:120px 10%;
+
+}
+
+.title{
+
+font-size:45px;
+font-weight:900;
+margin-bottom:60px;
+text-align:center;
+
+}
+
+.cards{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+gap:30px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+padding:40px;
+border-radius:25px;
+transition:.5s;
+
+}
+
+.card:hover{
+
+transform:translateY(-12px);
+background:rgba(255,255,255,.09);
+
+}
+
+.card h3{
+
+font-size:28px;
+margin-bottom:15px;
+
+}
+
+.card p{
+
+color:#d4d4d4;
+line-height:1.8;
+
+}
+
+.stats{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+
+}
+
+.stat{
+
+text-align:center;
+padding:45px;
+border-radius:20px;
+background:rgba(255,255,255,.05);
+
+}
+
+.number{
+
+font-size:55px;
+font-weight:900;
+color:#5fa7ff;
+
+}
+
+.contact{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
+
+}
+
+input,textarea{
+
+width:100%;
+padding:18px;
+margin-bottom:20px;
+background:rgba(255,255,255,.05);
+border:none;
+outline:none;
+color:white;
+border-radius:15px;
+
+}
+
+textarea{
+
+height:170px;
+
+}
+
+button{
+
+padding:18px;
+width:100%;
+border:none;
+background:linear-gradient(135deg,#2382ff,#004cff);
+color:white;
+font-size:18px;
+font-weight:bold;
+border-radius:15px;
+cursor:pointer;
+
+}
+
+footer{
+
+padding:40px;
+text-align:center;
+background:#050505;
+color:#999;
+
+}
+
+@media(max-width:900px){
+
+.hero h1{
+
+font-size:45px;
+
+}
+
+.contact{
+
+grid-template-columns:1fr;
+
+}
+
+header{
+
+padding:20px;
+
+}
+
+nav{
+
+display:none;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">PREMIUM</div>
+
+<nav>
+
+<a href="#">ראשי</a>
+<a href="#">שירותים</a>
+<a href="#">אודות</a>
+<a href="#">פרויקטים</a>
+<a href="#">צור קשר</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>בונים אתרים שנראים מיליון דולר</h1>
+
+<p>
+
+עיצוב מודרני • ביצועים מהירים • אנימציות מתקדמות • חוויית משתמש ברמה הגבוהה ביותר.
+
+</p>
+
+<div class="buttons">
+
+<a class="btn primary" href="#">התחל עכשיו</a>
+
+<a class="btn secondary" href="#">העבודות שלנו</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">השירותים שלנו</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Landing Pages</h3>
+
+<p>
+
+דפי נחיתה מעוצבים שמייצרים יותר פניות ומכירות.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Business Websites</h3>
+
+<p>
+
+אתרי תדמית יוקרתיים עם חוויית משתמש מתקדמת.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>E-Commerce</h3>
+
+<p>
+
+חנויות אונליין מהירות, מודרניות ומוכנות למכירות.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">המספרים שלנו</h2>
+
+<div class="stats">
+
+<div class="stat">
+
+<div class="number" data-target="350">0</div>
+
+<p>לקוחות</p>
+
+</div>
+
+<div class="stat">
+
+<div class="number" data-target="520">0</div>
+
+<p>פרויקטים</p>
+
+</div>
+
+<div class="stat">
+
+<div class="number" data-target="99">0</div>
+
+<p>% שביעות רצון</p>
+
+</div>
+
+<div class="stat">
+
+<div class="number" data-target="7">0</div>
+
+<p>שנות ניסיון</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">צור קשר</h2>
+
+<div class="contact">
+
+<div>
+
+<h2 style="font-size:45px;margin-bottom:20px;">
+בוא נבנה את האתר הבא שלך
+</h2>
+
+<p style="color:#cfd6ff;font-size:20px;line-height:1.9">
+
+עיצוב יוקרתי, מהירות גבוהה ותוצאה שתבלוט מעל כולם.
+
+</p>
+
+</div>
+
+<form>
+
+<input placeholder="שם מלא">
+
+<input placeholder="אימייל">
+
+<input placeholder="טלפון">
+
+<textarea placeholder="ספר לנו על הפרויקט"></textarea>
+
+<button>שלח הודעה</button>
+
+</form>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Premium Studio
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".number").forEach(counter=>{
+
+let target=+counter.dataset.target;
+
+let c=0;
+
+let speed=target/120;
+
+function update(){
+
+c+=speed;
+
+if(c<target){
+
+counter.innerHTML=Math.floor(c);
+
+requestAnimationFrame(update);
+
+}
+
+else{
+
+counter.innerHTML=target;
+
+}
+
+}
+
+update();
+
+});
+
+</script>
+
+</body>
+
+</html>
