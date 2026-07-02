@@ -4,6 +4,10 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  // Honor a PORT assigned by the environment (falls back to Vite's default).
+  server: {
+    port: process.env.PORT ? Number(process.env.PORT) : 5173,
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
