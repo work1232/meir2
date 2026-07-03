@@ -62,34 +62,34 @@ export function Contact() {
         <div className="glass-panel overflow-hidden rounded-[2rem]">
           <div className="grid gap-0 lg:grid-cols-2">
             {/* Left — info */}
-            <div className="relative p-8 sm:p-12">
+            <div className="relative p-5 sm:p-8 md:p-12">
               <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
                 {t.contact.kicker}
               </span>
-              <h2 className="mt-5 text-3xl font-bold sm:text-4xl">
+              <h2 className="mt-4 text-2xl font-bold sm:text-3xl md:text-4xl">
                 {t.contact.title}
               </h2>
-              <p className="mt-4 max-w-md text-muted-foreground">
+              <p className="mt-3 max-w-md text-sm text-muted-foreground md:text-base">
                 {t.contact.desc}
               </p>
 
-              <div className="mt-8 flex flex-col gap-3">
+              <div className="mt-5 grid grid-cols-2 gap-2 lg:mt-8 lg:grid-cols-1 lg:gap-3">
                 {methods.map((m) => (
                   <a
                     key={m.label}
                     href={m.href}
                     target={m.href.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer"
-                    className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-colors hover:border-primary/40 hover:bg-white/[0.06]"
+                    className="group flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-3 transition-colors hover:border-primary/40 hover:bg-white/[0.06] lg:gap-4 lg:rounded-2xl lg:p-4"
                   >
-                    <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-primary to-[#5b3df5] text-white">
-                      <m.icon className="h-5 w-5" />
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-primary to-[#5b3df5] text-white lg:h-11 lg:w-11 lg:rounded-xl">
+                      <m.icon className="h-4 w-4 lg:h-5 lg:w-5" />
                     </span>
                     <span className="min-w-0">
-                      <span className="block text-xs text-muted-foreground">
+                      <span className="block text-[10px] text-muted-foreground lg:text-xs">
                         {m.label}
                       </span>
-                      <span className="block truncate font-medium text-foreground" dir="ltr">
+                      <span className="block truncate text-xs font-medium text-foreground lg:text-base" dir="ltr">
                         {m.value}
                       </span>
                     </span>
@@ -99,7 +99,7 @@ export function Contact() {
             </div>
 
             {/* Right — form */}
-            <div className="border-t border-white/10 bg-black/20 p-8 sm:p-12 lg:border-s lg:border-t-0">
+            <div className="border-t border-white/10 bg-black/20 p-5 sm:p-8 md:p-12 lg:border-s lg:border-t-0">
               {sent ? (
                 <div
                   role="status"

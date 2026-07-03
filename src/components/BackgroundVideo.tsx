@@ -1,5 +1,3 @@
-import { useEffect, useRef } from "react";
-
 type BackgroundVideoProps = {
   src: string;
   className?: string;
@@ -7,40 +5,20 @@ type BackgroundVideoProps = {
 };
 
 /**
- * A muted, looping background video that only plays while it is on screen.
- * Pausing off-screen videos keeps decode work (and jank) down when several
- * heavy videos live on the same page.
+ * A muted, looping, autoplaying background video.
+ * iOS Safari ONLY autoplays a video that has the `autoplay` attribute together
+ * with `muted` + `playsinline` — a programmatic `.play()` is blocked. So we use
+ * the attribute directly (the videos are compressed, so always-on is cheap).
  */
 export function BackgroundVideo({ src, className, poster }: BackgroundVideoProps) {
-  const ref = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = ref.current;
-    if (!video) return;
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.05 }
-    );
-
-    io.observe(video);
-    return () => io.disconnect();
-  }, []);
-
   return (
     <video
-      ref={ref}
       className={className}
+      autoPlay
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="auto"
       poster={poster}
       aria-hidden="true"
     >

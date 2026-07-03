@@ -126,10 +126,12 @@ export function About() {
                 </ul>
               </div>
 
-              {/* Interactive 3D (lazy-mounted + paused off-screen) */}
+              {/* Interactive 3D (lazy-mounted + paused off-screen).
+                  On mobile: push the robot down so it sits at the bottom of
+                  the black card instead of floating with empty space below. */}
               <Spline3D
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                className="relative min-h-[320px] flex-1 md:min-h-[520px]"
+                className="relative min-h-[280px] flex-1 overflow-hidden md:min-h-[520px] [&_canvas]:!translate-y-[15%] md:[&_canvas]:!translate-y-0"
               />
             </div>
           </Card>

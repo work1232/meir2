@@ -73,7 +73,7 @@ export function Pricing() {
           )}
         </div>
 
-        <div className="mx-auto mt-14 flex max-w-4xl flex-col items-stretch justify-center gap-8 md:flex-row md:gap-6">
+        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-3 items-stretch justify-center gap-2 sm:gap-3 md:mt-14 md:flex md:flex-row md:gap-6">
           {plans.map((plan) => (
             <PricingCard key={plan.planName} {...plan} />
           ))}

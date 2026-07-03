@@ -13,7 +13,6 @@ export function Hero() {
       {/* Video background */}
       <BackgroundVideo
         src="/8523640-hd_1920_1080_25fps.mp4"
-        poster="/website.jpg"
         className="absolute inset-0 h-full w-full object-cover"
       />
 

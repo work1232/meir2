@@ -209,13 +209,13 @@ export const PricingCard = ({
   currency = '$', period = '/mo', popularText = 'Most Popular', onSelect,
 }: PricingCardProps) => {
   const cardClasses = `
-    backdrop-blur-[14px] bg-gradient-to-br rounded-2xl shadow-xl flex-1 max-w-xs px-7 py-8 flex flex-col transition-all duration-300
+    backdrop-blur-[14px] bg-gradient-to-br rounded-xl md:rounded-2xl shadow-xl flex-1 md:max-w-xs px-3 py-4 md:px-7 md:py-8 flex flex-col transition-all duration-300
     from-black/5 to-black/0 border border-black/10
     dark:from-white/10 dark:to-white/5 dark:border-white/10 dark:backdrop-brightness-[0.91]
-    ${isPopular ? 'scale-105 relative ring-2 ring-cyan-400/20 dark:from-white/20 dark:to-white/10 dark:border-cyan-400/30 shadow-2xl' : ''}
+    ${isPopular ? 'relative md:scale-105 ring-2 ring-cyan-400/20 dark:from-white/20 dark:to-white/10 dark:border-cyan-400/30 shadow-2xl' : ''}
   `;
   const buttonClasses = `
-    mt-auto w-full py-2.5 rounded-xl font-semibold text-[14px] transition font-sans
+    mt-auto w-full py-1.5 md:py-2.5 rounded-lg md:rounded-xl font-semibold text-[11px] md:text-[14px] transition font-sans
     ${buttonVariant === 'primary'
       ? 'bg-cyan-400 hover:bg-cyan-300 text-foreground'
       : 'bg-black/10 hover:bg-black/20 text-foreground border border-black/20 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white dark:border-white/20'
@@ -225,23 +225,23 @@ export const PricingCard = ({
   return (
     <div className={cardClasses.trim()}>
       {isPopular && (
-        <div className="absolute -top-4 right-4 px-3 py-1 text-[12px] font-semibold rounded-full bg-cyan-400 text-foreground dark:text-black">
+        <div className="absolute -top-2 right-2 md:-top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 text-[8px] md:text-[12px] font-semibold rounded-full bg-cyan-400 text-foreground dark:text-black">
           {popularText}
         </div>
       )}
-      <div className="mb-3">
-        <h2 className="text-[48px] font-extralight tracking-[-0.03em] text-foreground font-display">{planName}</h2>
-        <p className="text-[16px] text-foreground/70 mt-1 font-sans">{description}</p>
+      <div className="mb-2 md:mb-3">
+        <h2 className="text-[20px] md:text-[48px] font-extralight tracking-[-0.03em] text-foreground font-display leading-tight">{planName}</h2>
+        <p className="text-[10px] md:text-[16px] leading-snug text-foreground/70 mt-1 font-sans">{description}</p>
       </div>
-      <div className="my-6 flex items-baseline gap-2">
-        <span className="text-[48px] font-extralight text-foreground font-display">{currency}{price}</span>
-        {period && <span className="text-[14px] text-foreground/70 font-sans">{period}</span>}
+      <div className="my-3 md:my-6 flex items-baseline gap-1 md:gap-2">
+        <span className="text-[19px] md:text-[48px] font-extralight text-foreground font-display">{currency}{price}</span>
+        {period && <span className="text-[11px] md:text-[14px] text-foreground/70 font-sans">{period}</span>}
       </div>
-      <div className="card-divider w-full mb-5 h-px bg-[linear-gradient(90deg,transparent,rgba(0,0,0,0.1)_50%,transparent)] dark:bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.09)_20%,rgba(255,255,255,0.22)_50%,rgba(255,255,255,0.09)_80%,transparent)]"></div>
-      <ul className="flex flex-col gap-2 text-[14px] text-foreground/90 mb-6 font-sans">
+      <div className="card-divider w-full mb-3 md:mb-5 h-px bg-[linear-gradient(90deg,transparent,rgba(0,0,0,0.1)_50%,transparent)] dark:bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.09)_20%,rgba(255,255,255,0.22)_50%,rgba(255,255,255,0.09)_80%,transparent)]"></div>
+      <ul className="flex flex-col gap-1 md:gap-2 text-[10px] md:text-[14px] leading-snug text-foreground/90 mb-3 md:mb-6 font-sans">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-center gap-2">
-            <CheckIcon className="text-cyan-400 w-4 h-4" /> {feature}
+          <li key={index} className="flex items-start gap-1 md:gap-2">
+            <CheckIcon className="text-cyan-400 w-3 h-3 md:w-4 md:h-4 shrink-0 mt-0.5" /> <span>{feature}</span>
           </li>
         ))}
       </ul>
