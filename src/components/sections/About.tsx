@@ -6,8 +6,52 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { SplineScene } from "@/components/ui/splite";
 import SocialCards from "@/components/ui/card-fan-carousel";
 import { useLang } from "@/i18n/LanguageProvider";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const PERK_VIDEOS = ["/code1.mp4", "/code2.mp4", "/code3.mp4", "/code4.mp4"];
+
+/** Touch-friendly services grid for mobile (the desktop fan needs a mouse). */
+function MobileServices({
+  perks,
+  videos,
+}: {
+  perks: { label: string; desc: string }[];
+  videos: string[];
+}) {
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      {perks.map((perk, i) => (
+        <div
+          key={perk.label}
+          className="relative min-h-[160px] overflow-hidden rounded-2xl border border-white/10 shadow-xl shadow-black/40"
+        >
+          <video
+            src={videos[i % videos.length]}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover opacity-50"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/30" />
+          <div className="relative flex h-full flex-col justify-end p-3">
+            <span className="mb-1.5 grid h-7 w-7 place-items-center rounded-full border border-primary/30 bg-primary/15 text-xs font-bold text-primary">
+              {i + 1}
+            </span>
+            <h3 className="font-display text-sm font-bold leading-tight text-white">
+              {perk.label}
+            </h3>
+            <p className="mt-1 text-[11px] leading-snug text-white/75">
+              {perk.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 type SplineApp = { play?: () => void; stop?: () => void };
 
@@ -74,6 +118,7 @@ function Spline3D({ scene, className }: { scene: string; className?: string }) {
 
 export function About() {
   const { t, lang } = useLang();
+  const isMobile = useIsMobile();
 
   // Memoize so the carousel's cards prop keeps a stable identity across
   // renders (otherwise its entry animation resets on every re-render).
@@ -131,7 +176,7 @@ export function About() {
                   the black card instead of floating with empty space below. */}
               <Spline3D
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                className="relative min-h-[280px] flex-1 overflow-hidden md:min-h-[520px] [&_canvas]:!translate-y-[15%] md:[&_canvas]:!translate-y-0"
+                className="relative min-h-[260px] flex-1 overflow-hidden md:min-h-[520px] [&_canvas]:!translate-y-[26%] md:[&_canvas]:!translate-y-0"
               />
             </div>
           </Card>
@@ -146,15 +191,21 @@ export function About() {
             <h2 className="mt-5 text-3xl font-bold sm:text-4xl md:text-5xl">
               {t.about.servicesTitle}
             </h2>
-            <p className="mt-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              <MousePointer2 className="h-4 w-4" />
-              {lang === "he" ? "רחפו על הכרטיסים" : "Hover the cards"}
-            </p>
+            {!isMobile && (
+              <p className="mt-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                <MousePointer2 className="h-4 w-4" />
+                {lang === "he" ? "רחפו על הכרטיסים" : "Hover the cards"}
+              </p>
+            )}
           </Reveal>
 
-          {/* Service perks — fanned deck of hover-play video cards */}
+          {/* Service perks — fanned deck on desktop, touch-friendly grid on mobile */}
           <Reveal className="mt-8">
-            <SocialCards cards={fanCards} />
+            {isMobile ? (
+              <MobileServices perks={t.about.perks} videos={PERK_VIDEOS} />
+            ) : (
+              <SocialCards cards={fanCards} />
+            )}
           </Reveal>
 
           {/* Service names */}

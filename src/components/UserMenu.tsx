@@ -12,11 +12,12 @@ export function UserMenu() {
 
   useEffect(() => {
     if (!open) return;
-    const onClick = (e: MouseEvent) => {
+    // pointerdown covers both mouse and touch (mousedown is unreliable on iOS).
+    const onDown = (e: Event) => {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     };
-    window.addEventListener("mousedown", onClick);
-    return () => window.removeEventListener("mousedown", onClick);
+    window.addEventListener("pointerdown", onDown);
+    return () => window.removeEventListener("pointerdown", onDown);
   }, [open]);
 
   if (!user) {

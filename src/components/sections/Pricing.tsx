@@ -7,10 +7,12 @@ import {
 import { useLang } from "@/i18n/LanguageProvider";
 import { useAuth, type Account } from "@/auth/AuthProvider";
 import { openWhatsApp, fillTemplate } from "@/lib/whatsapp";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export function Pricing() {
   const { t } = useLang();
   const { user, openAuth } = useAuth();
+  const isMobile = useIsMobile();
 
   // Build the WhatsApp message for a chosen plan and open it.
   const sendPlan = (planName: string, price: string, name: string) => {
@@ -48,8 +50,14 @@ export function Pricing() {
 
   return (
     <section id="pricing" className="relative w-full overflow-hidden py-24 sm:py-32">
-      {/* Animated WebGL background (scoped to this section) */}
-      <ShaderCanvas />
+      {/* Animated WebGL background — desktop only. On mobile we skip it so iOS
+          Safari's single WebGL context stays free for the Spline 3D robot, and
+          use a light CSS glow instead. */}
+      {isMobile ? (
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(60%_50%_at_50%_45%,rgba(34,211,238,0.18),transparent_70%)]" />
+      ) : (
+        <ShaderCanvas />
+      )}
 
       {/* Blend the section edges into the page background */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-40 bg-gradient-to-b from-background to-transparent" />
