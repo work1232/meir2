@@ -17,10 +17,11 @@ export function AuthModal() {
 
   const isSignUp = authMode === "signup";
 
-  // Reset fields/errors whenever the modal opens or the mode switches.
+  // Reset the error when the modal opens. (Deliberately NOT on authMode
+  // change — the sign-in flow switches to sign-up with a helpful message.)
   useEffect(() => {
     if (authOpen) setError("");
-  }, [authOpen, authMode]);
+  }, [authOpen]);
 
   // Close on Escape.
   useEffect(() => {
@@ -45,7 +46,16 @@ export function AuthModal() {
         return;
       }
       const res = signIn(email, password);
-      if (!res.ok) setError(t.auth.errInvalid);
+      if (!res.ok) {
+        if (res.error === "notfound") {
+          // No such account: flip to sign-up with the fields kept, so the
+          // user just adds name+phone and taps once.
+          setAuthMode("signup");
+          setError(t.auth.errNotFound);
+        } else {
+          setError(t.auth.errInvalid);
+        }
+      }
     }
   };
 
@@ -157,7 +167,10 @@ export function AuthModal() {
               </div>
 
               {error && (
-                <p role="alert" className="text-sm font-medium text-red-400">
+                <p
+                  role="alert"
+                  className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300"
+                >
                   {error}
                 </p>
               )}
@@ -174,7 +187,10 @@ export function AuthModal() {
             </form>
 
             <button
-              onClick={() => setAuthMode(isSignUp ? "signin" : "signup")}
+              onClick={() => {
+                setError("");
+                setAuthMode(isSignUp ? "signin" : "signup");
+              }}
               className="mt-5 w-full text-center text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {isSignUp ? t.auth.toggleToSignIn : t.auth.toggleToSignUp}

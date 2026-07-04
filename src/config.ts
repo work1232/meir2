@@ -10,9 +10,11 @@
 export const siteConfig = {
   brand: "Meir Dahan",
   email: "meir558d@gmail.com",
-  phone: "+972 54-382-1419",
-  // WhatsApp number in international format, digits only:
-  whatsapp: "972543821419",
+  phone: "0543821419",
+  // The owner's WhatsApp number exactly as dialed locally. The code converts
+  // it to international format (972...) automatically when building wa.me
+  // links, because WhatsApp links only accept international format.
+  whatsapp: "0543821419",
   socials: {
     instagram: "https://instagram.com",
     linkedin: "https://linkedin.com",

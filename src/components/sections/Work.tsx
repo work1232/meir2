@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { MoveHorizontal, ArrowUpRight } from "lucide-react";
 import {
   ImageComparison,
@@ -13,6 +14,27 @@ const FEATURED_HOST = "yosi1223.github.io/work";
 
 export function Work() {
   const { t } = useLang();
+
+  // Mount the live external site only when the user scrolls near it — a full
+  // site running in an iframe from page load is a real drag on smoothness.
+  const frameHostRef = useRef<HTMLDivElement>(null);
+  const [frameReady, setFrameReady] = useState(false);
+
+  useEffect(() => {
+    const el = frameHostRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setFrameReady(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "600px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <section id="work" className="relative py-24 sm:py-32">
@@ -136,16 +158,22 @@ export function Work() {
                 </span>
               </div>
 
-              {/* Live embed */}
-              <div className="relative aspect-[3/4] w-full sm:aspect-[16/10]">
-                <iframe
-                  src={FEATURED_URL}
-                  title={t.work.featuredTitle}
-                  loading="lazy"
-                  className="pointer-events-none absolute inset-0 h-full w-full bg-white md:pointer-events-auto"
-                  sandbox="allow-scripts allow-same-origin"
-                  referrerPolicy="no-referrer"
-                />
+              {/* Live embed (mounted only when scrolled near) */}
+              <div ref={frameHostRef} className="relative aspect-[3/4] w-full sm:aspect-[16/10]">
+                {frameReady ? (
+                  <iframe
+                    src={FEATURED_URL}
+                    title={t.work.featuredTitle}
+                    loading="lazy"
+                    className="pointer-events-none absolute inset-0 h-full w-full bg-white md:pointer-events-auto"
+                    sandbox="allow-scripts allow-same-origin"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="absolute inset-0 grid place-items-center bg-[#14141c]">
+                    <span className="loader" />
+                  </div>
+                )}
                 {/* On touch devices, tap opens the real site (avoids scroll trapping) */}
                 <a
                   href={FEATURED_URL}

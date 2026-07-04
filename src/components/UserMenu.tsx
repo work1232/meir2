@@ -9,6 +9,19 @@ export function UserMenu() {
   const { t } = useLang();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const prevUserRef = useRef(user);
+
+  // Right after a successful login, open the profile panel for a moment so
+  // the user clearly sees they're signed in and where their details live.
+  useEffect(() => {
+    const wasLoggedOut = !prevUserRef.current;
+    prevUserRef.current = user;
+    if (wasLoggedOut && user) {
+      setOpen(true);
+      const timer = setTimeout(() => setOpen(false), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [user]);
 
   useEffect(() => {
     if (!open) return;

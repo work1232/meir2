@@ -26,7 +26,10 @@ function saveUsers(users: StoredAccount[]) {
   localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
-export type AuthResult = { ok: boolean; error?: "exists" | "invalid" };
+export type AuthResult = {
+  ok: boolean;
+  error?: "exists" | "invalid" | "notfound";
+};
 
 type AuthContextValue = {
   user: Account | null;
@@ -74,7 +77,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     (data: SignUpData): AuthResult => {
       const email = data.email.trim().toLowerCase();
       const users = loadUsers();
-      if (users.some((u) => u.email === email)) return { ok: false, error: "exists" };
+      const existing = users.find((u) => u.email === email);
+      if (existing) {
+        // Same email + same password → the user simply re-registered; treat
+        // it as a sign-in instead of failing ("sometimes it doesn't work").
+        if (existing.password === data.password) {
+          finishSuccess(existing);
+          return { ok: true };
+        }
+        return { ok: false, error: "exists" };
+      }
       const acc: StoredAccount = { ...data, email, name: data.name.trim() };
       users.push(acc);
       saveUsers(users);
@@ -88,7 +100,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     (email: string, password: string): AuthResult => {
       const e = email.trim().toLowerCase();
       const acc = loadUsers().find((u) => u.email === e);
-      if (!acc || acc.password !== password) return { ok: false, error: "invalid" };
+      // Distinguish "no such account" (→ UI switches to sign-up) from a
+      // wrong password.
+      if (!acc) return { ok: false, error: "notfound" };
+      if (acc.password !== password) return { ok: false, error: "invalid" };
       finishSuccess(acc);
       return { ok: true };
     },

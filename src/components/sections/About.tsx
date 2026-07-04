@@ -174,9 +174,12 @@ export function About() {
               {/* Interactive 3D (lazy-mounted + paused off-screen).
                   On mobile: push the robot down so it sits at the bottom of
                   the black card instead of floating with empty space below. */}
+              {/* Mobile: a FIXED height (not min-h) — without it the Spline
+                  canvas inflates the container and the robot floats in a huge
+                  empty area instead of sitting at the card's bottom. */}
               <Spline3D
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                className="relative min-h-[260px] flex-1 overflow-hidden md:min-h-[520px] [&_canvas]:!translate-y-[26%] md:[&_canvas]:!translate-y-0"
+                className="relative h-[280px] overflow-hidden md:h-auto md:min-h-[520px] md:flex-1 [&_canvas]:!h-full [&_canvas]:!w-full [&_canvas]:!translate-y-[22%] md:[&_canvas]:!translate-y-0"
               />
             </div>
           </Card>
