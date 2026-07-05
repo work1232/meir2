@@ -1,9 +1,26 @@
+import { useRef } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { Reveal } from "@/components/Reveal";
 import { BackgroundVideo } from "@/components/BackgroundVideo";
 import { useLang } from "@/i18n/LanguageProvider";
 
 export function Process() {
   const { t } = useLang();
+
+  // "The road": a white light-line draws itself along the steps as the
+  // visitor scrolls through — showing the distance travelled on the journey.
+  const roadRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: roadRef,
+    offset: ["start 85%", "end 55%"],
+  });
+  const roadScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <section id="process" className="relative overflow-hidden py-24 sm:py-32">
@@ -25,9 +42,15 @@ export function Process() {
           </h2>
         </Reveal>
 
-        <div className="relative mt-16">
-          {/* connecting line */}
+        <div ref={roadRef} className="relative mt-16">
+          {/* connecting line (faint base track) */}
           <div className="absolute inset-x-0 top-8 hidden h-px bg-gradient-to-r from-transparent via-white/15 to-transparent lg:block" />
+          {/* the light-line that draws with scroll */}
+          <motion.div
+            aria-hidden="true"
+            style={reduceMotion ? undefined : { scaleX: roadScale }}
+            className="absolute inset-x-0 top-8 hidden h-px origin-left bg-gradient-to-r from-white/0 via-white/70 to-white/0 shadow-[0_0_12px_rgba(255,255,255,0.35)] rtl:origin-right lg:block"
+          />
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {t.process.steps.map((step, i) => (

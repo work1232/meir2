@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/image-comparison";
 import { GlassButton } from "@/components/ui/glass-button";
 import { Magnetic } from "@/components/Magnetic";
+import { Panel3D } from "@/components/Panel3D";
 import { Reveal } from "@/components/Reveal";
 import { useLang } from "@/i18n/LanguageProvider";
 
@@ -54,6 +55,7 @@ export function Work() {
         </Reveal>
 
         <Reveal delay={0.1} className="mx-auto mt-14 max-w-5xl">
+          <Panel3D from={-9}>
           <div className="rounded-[2rem] border border-white/12 bg-gradient-to-b from-white/[0.06] to-transparent p-2 shadow-2xl shadow-black/60 backdrop-blur-sm sm:p-3">
             <div className="relative overflow-hidden rounded-[1.5rem]">
               <ImageComparison
@@ -92,6 +94,7 @@ export function Work() {
               </ImageComparison>
             </div>
           </div>
+          </Panel3D>
 
           <p className="mt-5 text-center text-sm text-muted-foreground">
             <MoveHorizontal className="me-1 inline h-4 w-4 align-text-bottom" />
@@ -142,6 +145,7 @@ export function Work() {
           </Reveal>
 
           <Reveal delay={0.1} className="mt-8">
+            <Panel3D from={9}>
             <div className="overflow-hidden rounded-2xl border border-white/12 bg-[#14141c] shadow-2xl shadow-black/60">
               {/* Browser chrome */}
               <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.04] px-4 py-3">
@@ -187,6 +191,7 @@ export function Work() {
                 />
               </div>
             </div>
+            </Panel3D>
           </Reveal>
         </div>
       </div>

@@ -1,4 +1,10 @@
-import { motion } from "framer-motion";
+import { useRef, type PointerEvent as ReactPointerEvent } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { GlassButton } from "@/components/ui/glass-button";
 import { BackgroundVideo } from "@/components/BackgroundVideo";
@@ -10,8 +16,56 @@ export function Hero() {
   const { t, lang } = useLang();
   const Arrow = lang === "he" ? ArrowLeft : ArrowRight;
 
+  /* --- 3D journey: fly-through depth -------------------------------- */
+  // As the visitor scrolls away from the hero, the title lines separate in
+  // depth — the top line rushes toward the camera fastest, the bottom line
+  // slowest — like flying THROUGH the headline into the site.
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -90]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const s1 = useTransform(scrollYProgress, [0, 1], [1, 1.22]);
+  const s2 = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
+  const s3 = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
+  const fade = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
+  const depth = (y: typeof y1, scale: typeof s1) =>
+    reduceMotion ? undefined : { y, scale, opacity: fade };
+
+  /* --- 3D journey: mouse parallax (desktop only) --------------------- */
+  const parallaxRef = useRef<HTMLDivElement>(null);
+  const frame = useRef<number | null>(null);
+  const onPointerMove = (e: ReactPointerEvent<HTMLElement>) => {
+    if (reduceMotion) return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    const el = parallaxRef.current;
+    if (!el) return;
+    const mx = e.clientX / window.innerWidth - 0.5;
+    const my = e.clientY / window.innerHeight - 0.5;
+    if (frame.current) cancelAnimationFrame(frame.current);
+    frame.current = requestAnimationFrame(() => {
+      el.style.transform = `perspective(1200px) rotateX(${(-my * 2).toFixed(
+        2
+      )}deg) rotateY(${(mx * 2).toFixed(2)}deg)`;
+    });
+  };
+  const onPointerLeave = () => {
+    if (frame.current) cancelAnimationFrame(frame.current);
+    if (parallaxRef.current) parallaxRef.current.style.transform = "";
+  };
+
   return (
-    <section id="top" className="relative min-h-[100svh] w-full overflow-hidden">
+    <section
+      id="top"
+      ref={sectionRef}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
+      className="relative min-h-[100svh] w-full overflow-hidden"
+    >
       {/* Video background */}
       <BackgroundVideo
         src="/8523640-hd_1920_1080_25fps.mp4"
@@ -24,8 +78,11 @@ export function Hero() {
       <div className="absolute inset-0 halo" />
       <div className="pointer-events-none absolute inset-0 grain" />
 
-      {/* Content */}
-      <div className="container-x relative z-10 flex min-h-[100svh] flex-col justify-center pt-28 pb-20">
+      {/* Content (mouse-parallax target on desktop) */}
+      <div
+        ref={parallaxRef}
+        className="container-x relative z-10 flex min-h-[100svh] flex-col justify-center pt-28 pb-20 transition-transform duration-200 ease-out will-change-transform"
+      >
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,29 +99,37 @@ export function Hero() {
         </motion.div>
 
         <h1 className="mx-auto max-w-5xl text-center text-4xl font-bold leading-[1.05] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-          <motion.span
-            className="block"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {t.hero.titleTop}
+          {/* Outer spans: scroll-linked depth (each line at a different
+              "distance"). Inner spans: the one-time entrance animation. */}
+          <motion.span className="block" style={depth(y1, s1)}>
+            <motion.span
+              className="block"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {t.hero.titleTop}
+            </motion.span>
           </motion.span>
-          <motion.span
-            className="block text-gradient-primary"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {t.hero.titleAccent}
+          <motion.span className="block" style={depth(y2, s2)}>
+            <motion.span
+              className="block text-gradient-primary"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {t.hero.titleAccent}
+            </motion.span>
           </motion.span>
-          <motion.span
-            className="block"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {t.hero.titleBottom}
+          <motion.span className="block" style={depth(y3, s3)}>
+            <motion.span
+              className="block"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {t.hero.titleBottom}
+            </motion.span>
           </motion.span>
         </h1>
 

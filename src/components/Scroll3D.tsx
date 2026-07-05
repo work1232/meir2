@@ -35,7 +35,13 @@ export function Scroll3D({ children, className }: Scroll3DProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.22, 0.78, 1], [0.5, 1, 1, 0.6]);
 
   if (reduceMotion) {
-    return <div className={className}>{children}</div>;
+    // Keep the ref attached so useScroll always has a real target (otherwise
+    // framer warns "target ref not hydrated" on every render).
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    );
   }
 
   return (

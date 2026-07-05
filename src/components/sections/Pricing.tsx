@@ -1,3 +1,10 @@
+import { useRef, type ReactNode } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { Lock } from "lucide-react";
 import {
   PricingCard,
@@ -9,6 +16,41 @@ import { useAuth, type Account } from "@/auth/AuthProvider";
 import { openWhatsApp, fillTemplate } from "@/lib/whatsapp";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { TiltCard } from "@/components/TiltCard";
+
+/**
+ * "Monolith rise": the side plans trail slightly behind the featured middle
+ * one while scrolling in, giving the columns depth. Desktop-only (plain div
+ * on mobile / reduced motion).
+ */
+function MonolithRise({
+  lag,
+  children,
+}: {
+  lag: number;
+  children: ReactNode;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "center 60%"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [lag, 0]);
+
+  // ref stays attached on the fallback too, so useScroll always has a target.
+  if (isMobile || reduceMotion)
+    return (
+      <div ref={ref} className="h-full">
+        {children}
+      </div>
+    );
+  return (
+    <motion.div ref={ref} style={{ y }} className="h-full will-change-transform">
+      {children}
+    </motion.div>
+  );
+}
 
 export function Pricing() {
   const { t } = useLang();
@@ -83,16 +125,12 @@ export function Pricing() {
         </div>
 
         <div className="mx-auto mt-10 grid max-w-4xl grid-cols-3 items-stretch justify-center gap-2 sm:gap-3 md:mt-14 md:flex md:flex-row md:gap-6">
-          {plans.map((plan) => (
-            <TiltCard
-              key={plan.planName}
-              max={7}
-              scale={1.03}
-              glare={false}
-              className="h-full"
-            >
-              <PricingCard {...plan} />
-            </TiltCard>
+          {plans.map((plan, i) => (
+            <MonolithRise key={plan.planName} lag={plan.isPopular ? 0 : 64 + i * 8}>
+              <TiltCard max={7} scale={1.03} glare={false} className="h-full">
+                <PricingCard {...plan} />
+              </TiltCard>
+            </MonolithRise>
           ))}
         </div>
 
