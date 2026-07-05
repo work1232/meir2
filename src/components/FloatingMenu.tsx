@@ -23,13 +23,13 @@ export function FloatingMenu() {
 
       <MenuContainer
         direction="up"
-        triggerClassName="bg-gradient-to-br from-primary to-[#5b3df5] ring-1 ring-white/20"
+        triggerClassName="bg-gradient-to-br from-white to-[#8b8b96] ring-1 ring-white/40"
       >
         {/* Toggle */}
         <MenuItem
           label="Menu"
           icon={
-            <div className="relative h-6 w-6 text-white">
+            <div className="relative h-6 w-6 text-neutral-900">
               <div className="absolute inset-0 origin-center rotate-0 scale-100 opacity-100 transition-all duration-300 ease-in-out [div[data-expanded=true]_&]:rotate-180 [div[data-expanded=true]_&]:scale-0 [div[data-expanded=true]_&]:opacity-0">
                 <MenuIcon size={24} strokeWidth={2} />
               </div>

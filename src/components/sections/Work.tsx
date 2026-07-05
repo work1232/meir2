@@ -102,10 +102,10 @@ export function Work() {
         <div className="mx-auto mt-24 max-w-5xl">
           <Reveal className="grid items-end gap-6 md:grid-cols-[1fr_auto]">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-sm font-semibold text-emerald-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-sm font-semibold text-neutral-200">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
                 </span>
                 {t.work.featuredKicker}
               </span>
@@ -143,17 +143,17 @@ export function Work() {
               {/* Browser chrome */}
               <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.04] px-4 py-3">
                 <div className="flex gap-1.5">
-                  <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-                  <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-                  <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+                  <span className="h-3 w-3 rounded-full bg-neutral-400" />
+                  <span className="h-3 w-3 rounded-full bg-neutral-500" />
+                  <span className="h-3 w-3 rounded-full bg-neutral-600" />
                 </div>
                 <div className="mx-auto flex max-w-xs flex-1 items-center justify-center gap-2 rounded-full border border-white/10 bg-black/30 px-4 py-1.5">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="h-2 w-2 rounded-full bg-white" />
                   <span className="truncate text-xs text-muted-foreground" dir="ltr">
                     {FEATURED_HOST}
                   </span>
                 </div>
-                <span className="hidden rounded-full bg-emerald-400/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-300 sm:block">
+                <span className="hidden rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-neutral-200 sm:block">
                   {t.work.liveLabel}
                 </span>
               </div>

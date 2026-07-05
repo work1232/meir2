@@ -95,7 +95,7 @@ export function AuthModal() {
               <X className="h-5 w-5" />
             </button>
 
-            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-primary to-[#5b3df5] text-white shadow-lg shadow-primary/30">
+            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-white to-[#8b8b96] text-neutral-900 shadow-lg shadow-white/20">
               <User className="h-6 w-6" />
             </span>
             <h2 className="mt-5 text-2xl font-bold">{t.auth.authTitle}</h2>

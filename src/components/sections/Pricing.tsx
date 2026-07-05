@@ -54,7 +54,7 @@ export function Pricing() {
           Safari's single WebGL context stays free for the Spline 3D robot, and
           use a light CSS glow instead. */}
       {isMobile ? (
-        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(60%_50%_at_50%_45%,rgba(34,211,238,0.18),transparent_70%)]" />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(60%_50%_at_50%_45%,rgba(235,235,245,0.16),transparent_70%)]" />
       ) : (
         <ShaderCanvas />
       )}
@@ -65,17 +65,17 @@ export function Pricing() {
 
       <div className="container-x relative z-10">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm font-semibold text-cyan-300">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-sm font-semibold text-neutral-200">
             {t.pricing.kicker}
           </span>
-          <h2 className="mt-5 bg-gradient-to-r from-white via-cyan-300 to-blue-400 bg-clip-text font-display text-4xl font-extralight tracking-tight text-transparent md:text-6xl">
+          <h2 className="mt-5 bg-gradient-to-r from-white via-neutral-300 to-neutral-500 bg-clip-text font-display text-4xl font-extralight tracking-tight text-transparent md:text-6xl">
             {t.pricing.title}
           </h2>
           <p className="mt-4 text-lg text-foreground/80">{t.pricing.desc}</p>
 
           {!user && (
             <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-foreground/80">
-              <Lock className="h-3.5 w-3.5 text-cyan-300" />
+              <Lock className="h-3.5 w-3.5 text-neutral-300" />
               {t.pricing.loginToChoose}
             </p>
           )}

@@ -141,7 +141,7 @@ export function About() {
           <Card className="relative w-full overflow-hidden rounded-3xl border-white/10 bg-black/[0.96] shadow-2xl shadow-black/60">
             <Spotlight
               className="-top-40 left-0 md:-top-20 md:left-60"
-              fill="#b9a8ff"
+              fill="#dcdce4"
             />
 
             <div className="flex flex-col md:flex-row">
@@ -160,7 +160,7 @@ export function About() {
                 <ul className="mt-7 grid gap-3">
                   {t.about.points.map((p) => (
                     <li key={p} className="flex items-start gap-3">
-                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-to-br from-primary to-[#5b3df5] text-white">
+                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-to-br from-white to-[#8b8b96] text-neutral-900">
                         <Check className="h-3.5 w-3.5" strokeWidth={3} />
                       </span>
                       <span className="text-base font-medium text-neutral-200">

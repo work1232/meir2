@@ -58,7 +58,7 @@ export function UserMenu() {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={t.auth.account}
-        className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-primary to-[#5b3df5] text-sm font-bold text-white shadow-lg shadow-primary/30 transition-transform hover:scale-105"
+        className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-white to-[#8b8b96] text-sm font-bold text-neutral-900 shadow-lg shadow-white/20 transition-transform hover:scale-105"
       >
         {initials}
       </button>

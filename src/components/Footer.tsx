@@ -26,7 +26,7 @@ export function Footer() {
         <div className="flex flex-col items-center gap-8 text-center md:flex-row md:items-start md:justify-between md:text-start">
           <div className="max-w-xs">
             <div className="flex items-center justify-center gap-2 md:justify-start">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-[#5b3df5] font-display text-lg font-bold text-white">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-white to-[#8b8b96] font-display text-lg font-bold text-neutral-900">
                 {siteConfig.brand.replace(/[^A-Za-z]/g, "").slice(-1) || "M"}
               </span>
               <span className="font-display text-lg font-bold">

@@ -82,7 +82,7 @@ export function Contact() {
                     rel="noreferrer"
                     className="group flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-3 transition-colors hover:border-primary/40 hover:bg-white/[0.06] lg:gap-4 lg:rounded-2xl lg:p-4"
                   >
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-primary to-[#5b3df5] text-white lg:h-11 lg:w-11 lg:rounded-xl">
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-white to-[#8b8b96] text-neutral-900 lg:h-11 lg:w-11 lg:rounded-xl">
                       <m.icon className="h-4 w-4 lg:h-5 lg:w-5" />
                     </span>
                     <span className="min-w-0">
@@ -106,7 +106,7 @@ export function Contact() {
                   aria-live="polite"
                   className="flex h-full min-h-[320px] flex-col items-center justify-center text-center"
                 >
-                  <span className="grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white">
+                  <span className="grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-white to-[#9a9aa4] text-neutral-900">
                     <Check className="h-8 w-8" strokeWidth={3} />
                   </span>
                   <p className="mt-6 text-lg font-medium">{t.contact.form.sent}</p>

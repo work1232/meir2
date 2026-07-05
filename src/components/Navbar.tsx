@@ -46,7 +46,7 @@ export function Navbar() {
         <nav className="container-x relative flex h-16 items-center justify-between md:h-20">
           {/* Brand */}
           <a href="#top" className="group z-10 flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-[#5b3df5] font-display text-sm font-bold text-white shadow-lg shadow-primary/30">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-white to-[#8b8b96] font-display text-sm font-bold text-neutral-900 shadow-lg shadow-white/20">
               {brandInitials}
             </span>
             <span className="font-display text-lg font-bold tracking-tight">

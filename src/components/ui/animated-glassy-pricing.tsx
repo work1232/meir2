@@ -87,7 +87,9 @@ export const ShaderCanvas = () => {
         mask += paintCircle(uv,center,radius-.018,.01).r;
         mask += paintCircle(uv,center,radius+.018,.005).r;
         vec2 v=rotate2d(iTime)*uv;
-        vec3 foregroundColor=vec3(v.x,v.y,.7-v.y*v.x);
+        /* Monochrome silver: collapse the rotating RGB to a shifting gray level. */
+        float lum=clamp(dot(vec3(v.x,v.y,.7-v.y*v.x),vec3(0.299,0.587,0.114)),0.0,1.0);
+        vec3 foregroundColor=vec3(0.25+lum*0.75);
         vec3 color=mix(uBackgroundColor,foregroundColor,mask);
         color=mix(color,vec3(1.),paintCircle(uv,center,radius,.003).r);
         gl_FragColor=vec4(color,1.);
@@ -212,12 +214,12 @@ export const PricingCard = ({
     backdrop-blur-[14px] bg-gradient-to-br rounded-xl md:rounded-2xl shadow-xl flex-1 md:max-w-xs px-3 py-4 md:px-7 md:py-8 flex flex-col transition-all duration-300
     from-black/5 to-black/0 border border-black/10
     dark:from-white/10 dark:to-white/5 dark:border-white/10 dark:backdrop-brightness-[0.91]
-    ${isPopular ? 'relative md:scale-105 ring-2 ring-cyan-400/20 dark:from-white/20 dark:to-white/10 dark:border-cyan-400/30 shadow-2xl' : ''}
+    ${isPopular ? 'relative md:scale-105 ring-2 ring-white/25 dark:from-white/20 dark:to-white/10 dark:border-white/30 shadow-2xl' : ''}
   `;
   const buttonClasses = `
     mt-auto w-full py-1.5 md:py-2.5 rounded-lg md:rounded-xl font-semibold text-[11px] md:text-[14px] transition font-sans
     ${buttonVariant === 'primary'
-      ? 'bg-cyan-400 hover:bg-cyan-300 text-foreground'
+      ? 'bg-neutral-200 hover:bg-white text-black'
       : 'bg-black/10 hover:bg-black/20 text-foreground border border-black/20 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white dark:border-white/20'
     }
   `;
@@ -225,7 +227,7 @@ export const PricingCard = ({
   return (
     <div className={cardClasses.trim()}>
       {isPopular && (
-        <div className="absolute -top-2 right-2 md:-top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 text-[8px] md:text-[12px] font-semibold rounded-full bg-cyan-400 text-foreground dark:text-black">
+        <div className="absolute -top-2 right-2 md:-top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 text-[8px] md:text-[12px] font-semibold rounded-full bg-neutral-200 text-black dark:text-black">
           {popularText}
         </div>
       )}
@@ -241,7 +243,7 @@ export const PricingCard = ({
       <ul className="flex flex-col gap-1 md:gap-2 text-[10px] md:text-[14px] leading-snug text-foreground/90 mb-3 md:mb-6 font-sans">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-1 md:gap-2">
-            <CheckIcon className="text-cyan-400 w-3 h-3 md:w-4 md:h-4 shrink-0 mt-0.5" /> <span>{feature}</span>
+            <CheckIcon className="text-neutral-300 w-3 h-3 md:w-4 md:h-4 shrink-0 mt-0.5" /> <span>{feature}</span>
           </li>
         ))}
       </ul>
@@ -275,7 +277,7 @@ export const ModernPricingPage = ({
       {showAnimatedBackground && <ShaderCanvas />}
       <main className="relative w-full min-h-screen flex flex-col items-center justify-center px-4 py-8">
         <div className="w-full max-w-5xl mx-auto text-center mb-14">
-          <h1 className="text-[48px] md:text-[64px] font-extralight leading-tight tracking-[-0.03em] bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-cyan-500 to-blue-600 dark:from-white dark:via-cyan-300 dark:to-blue-400 font-display">
+          <h1 className="text-[48px] md:text-[64px] font-extralight leading-tight tracking-[-0.03em] bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 via-neutral-500 to-neutral-700 dark:from-white dark:via-neutral-300 dark:to-neutral-500 font-display">
             {title}
           </h1>
           <p className="mt-3 text-[16px] md:text-[20px] text-foreground/80 max-w-2xl mx-auto font-sans">
