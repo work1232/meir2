@@ -13,6 +13,10 @@ export type Content = {
     ctaSecondary: string;
     stats: { value: string; label: string }[];
   };
+  cosmos: {
+    screens: { title: string; l1: string; l2: string }[];
+    scroll: string;
+  };
   marquee: string[];
   about: {
     kicker: string;
@@ -126,6 +130,26 @@ export const translations: Record<Lang, Content> = {
         { value: "8", label: "שנות ניסיון" },
         { value: "99%", label: "שביעות רצון" },
       ],
+    },
+    cosmos: {
+      screens: [
+        {
+          title: "האופק",
+          l1: "איפה שחזון פוגש מציאות,",
+          l2: "שם אנחנו מעצבים את המחר.",
+        },
+        {
+          title: "היקום",
+          l1: "מעבר לגבולות הדמיון,",
+          l2: "שוכן יקום של אפשרויות.",
+        },
+        {
+          title: "האינסוף",
+          l1: "במרחב שבין רעיון ליצירה,",
+          l2: "נמצאת המהות של חדשנות אמיתית.",
+        },
+      ],
+      scroll: "גללו",
     },
     marquee: [
       "עיצוב UI/UX",
@@ -297,6 +321,26 @@ export const translations: Record<Lang, Content> = {
         { value: "8", label: "Years of craft" },
         { value: "99%", label: "Client satisfaction" },
       ],
+    },
+    cosmos: {
+      screens: [
+        {
+          title: "HORIZON",
+          l1: "Where vision meets reality,",
+          l2: "we shape the future of tomorrow.",
+        },
+        {
+          title: "COSMOS",
+          l1: "Beyond the boundaries of imagination,",
+          l2: "lies the universe of possibilities.",
+        },
+        {
+          title: "INFINITY",
+          l1: "In the space between thought and creation,",
+          l2: "we find the essence of true innovation.",
+        },
+      ],
+      scroll: "SCROLL",
     },
     marquee: [
       "UI/UX Design",
