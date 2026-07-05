@@ -30,7 +30,7 @@ export function Pricing() {
     if (user) {
       sendPlan(planName, price, user.name);
     } else {
-      openAuth((account: Account) => sendPlan(planName, price, account.name), "signup");
+      openAuth((account: Account) => sendPlan(planName, price, account.name));
     }
   };
 

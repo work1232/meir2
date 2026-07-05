@@ -1,27 +1,34 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, User, Mail, Phone, Lock } from "lucide-react";
+import { X, User, Mail, Phone } from "lucide-react";
 import { GlassButton } from "@/components/ui/glass-button";
 import { useAuth } from "@/auth/AuthProvider";
 import { useLang } from "@/i18n/LanguageProvider";
 
+/**
+ * One-step join modal: name + email + phone → done. No passwords, no
+ * sign-in/sign-up modes — a returning email simply signs back in.
+ */
 export function AuthModal() {
-  const { authOpen, authMode, closeAuth, setAuthMode, signIn, signUp } = useAuth();
+  const { authOpen, closeAuth, join, user } = useAuth();
   const { t } = useLang();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const isSignUp = authMode === "signup";
-
-  // Reset the error when the modal opens. (Deliberately NOT on authMode
-  // change — the sign-in flow switches to sign-up with a helpful message.)
+  // Reset the error when the modal opens; prefill from a known user.
   useEffect(() => {
-    if (authOpen) setError("");
-  }, [authOpen]);
+    if (authOpen) {
+      setError("");
+      if (user) {
+        setName(user.name);
+        setEmail(user.email);
+        setPhone(user.phone);
+      }
+    }
+  }, [authOpen, user]);
 
   // Close on Escape.
   useEffect(() => {
@@ -33,42 +40,19 @@ export function AuthModal() {
 
   const submit = () => {
     try {
-      doSubmit();
+      setError("");
+      if (!name.trim() || !email.trim() || !phone.trim()) {
+        setError(t.auth.errFields);
+        return;
+      }
+      join({ name, email, phone });
     } catch (err) {
       // Never leave the button silently dead — surface whatever went wrong.
       setError(`${t.auth.errUnknown} ${String(err)}`);
     }
   };
 
-  const doSubmit = () => {
-    setError("");
-    if (isSignUp) {
-      if (!name.trim() || !email.trim() || !phone.trim() || !password) {
-        setError(t.auth.errFields);
-        return;
-      }
-      const res = signUp({ name, email, phone, password });
-      if (!res.ok) setError(res.error === "exists" ? t.auth.errExists : t.auth.errFields);
-    } else {
-      if (!email.trim() || !password) {
-        setError(t.auth.errFields);
-        return;
-      }
-      const res = signIn(email, password);
-      if (!res.ok) {
-        if (res.error === "notfound") {
-          // No such account: flip to sign-up with the fields kept, so the
-          // user just adds name+phone and taps once.
-          setAuthMode("signup");
-          setError(t.auth.errNotFound);
-        } else {
-          setError(t.auth.errInvalid);
-        }
-      }
-    }
-  };
-
-  // Enter key inside a field still submits.
+  // Enter key inside a field submits too.
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     submit();
@@ -114,26 +98,22 @@ export function AuthModal() {
             <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-primary to-[#5b3df5] text-white shadow-lg shadow-primary/30">
               <User className="h-6 w-6" />
             </span>
-            <h2 className="mt-5 text-2xl font-bold">
-              {isSignUp ? t.auth.signUpTitle : t.auth.signInTitle}
-            </h2>
+            <h2 className="mt-5 text-2xl font-bold">{t.auth.authTitle}</h2>
             <p className="mt-1 text-sm text-muted-foreground">
-              {isSignUp ? t.auth.signUpSubtitle : t.auth.signInSubtitle}
+              {t.auth.authSubtitle}
             </p>
 
             <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3">
-              {isSignUp && (
-                <div className="relative">
-                  <User className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <input
-                    className={inputClass}
-                    placeholder={t.auth.name}
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    autoComplete="name"
-                  />
-                </div>
-              )}
+              <div className="relative">
+                <User className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <input
+                  className={inputClass}
+                  placeholder={t.auth.name}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  autoComplete="name"
+                />
+              </div>
 
               <div className="relative">
                 <Mail className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -148,30 +128,16 @@ export function AuthModal() {
                 />
               </div>
 
-              {isSignUp && (
-                <div className="relative">
-                  <Phone className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <input
-                    className={inputClass}
-                    type="tel"
-                    placeholder={t.auth.phone}
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    autoComplete="tel"
-                    dir="ltr"
-                  />
-                </div>
-              )}
-
               <div className="relative">
-                <Lock className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Phone className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <input
                   className={inputClass}
-                  type="password"
-                  placeholder={t.auth.password}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  autoComplete={isSignUp ? "new-password" : "current-password"}
+                  type="tel"
+                  placeholder={t.auth.phone}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  autoComplete="tel"
+                  dir="ltr"
                 />
               </div>
 
@@ -191,19 +157,9 @@ export function AuthModal() {
                 size="lg"
                 contentClassName="w-full text-center"
               >
-                {isSignUp ? t.auth.submitSignUp : t.auth.submitSignIn}
+                {t.auth.authSubmit}
               </GlassButton>
             </form>
-
-            <button
-              onClick={() => {
-                setError("");
-                setAuthMode(isSignUp ? "signin" : "signup");
-              }}
-              className="mt-5 w-full text-center text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {isSignUp ? t.auth.toggleToSignIn : t.auth.toggleToSignUp}
-            </button>
           </motion.div>
         </motion.div>
       )}

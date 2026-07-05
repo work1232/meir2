@@ -8,8 +8,8 @@ import {
 } from "react";
 
 export type Account = { name: string; email: string; phone: string };
-type StoredAccount = Account & { password: string };
-export type SignUpData = StoredAccount;
+// Legacy stored accounts may still carry a password field — it is ignored.
+type StoredAccount = Account & { password?: string };
 
 const USERS_KEY = "studio-m-users";
 const SESSION_KEY = "studio-m-session";
@@ -63,24 +63,21 @@ function saveUsers(users: StoredAccount[]) {
   storageSet(USERS_KEY, JSON.stringify(users));
 }
 
-export type AuthResult = {
-  ok: boolean;
-  error?: "exists" | "invalid" | "notfound";
-};
-
 type AuthContextValue = {
   user: Account | null;
-  signUp: (data: SignUpData) => AuthResult;
-  signIn: (email: string, password: string) => AuthResult;
+  /**
+   * One-step join: saves the visitor's details (upsert by email) and signs
+   * them in. No passwords, no separate sign-in — a returning email simply
+   * updates the stored details. This cannot "fail" beyond empty fields.
+   */
+  join: (data: Account) => void;
   signOut: () => void;
   // Modal control
   authOpen: boolean;
-  authMode: "signin" | "signup";
-  /** Open the auth modal; if provided, the callback runs (with the account)
-   * after a successful auth. */
-  openAuth: (afterSuccess?: (user: Account) => void, mode?: "signin" | "signup") => void;
+  /** Open the join modal; if provided, the callback runs (with the account)
+   * after a successful join. */
+  openAuth: (afterSuccess?: (user: Account) => void) => void;
   closeAuth: () => void;
-  setAuthMode: (mode: "signin" | "signup") => void;
 };
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -95,71 +92,44 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
 
   const [authOpen, setAuthOpen] = useState(false);
-  const [authMode, setAuthMode] = useState<"signin" | "signup">("signup");
   const afterRef = useRef<((user: Account) => void) | null>(null);
 
-  const finishSuccess = useCallback((acc: StoredAccount) => {
-    const account: Account = { name: acc.name, email: acc.email, phone: acc.phone };
-    storageSet(SESSION_KEY, acc.email);
+  const join = useCallback((data: Account) => {
+    const email = data.email.trim().toLowerCase();
+    const account: Account = {
+      name: data.name.trim(),
+      email,
+      phone: data.phone.trim(),
+    };
+
+    const users = loadUsers();
+    const idx = users.findIndex((u) => u.email === email);
+    if (idx >= 0) {
+      users[idx] = { ...users[idx], ...account };
+    } else {
+      users.push(account);
+    }
+    saveUsers(users);
+    storageSet(SESSION_KEY, email);
     setUser(account);
     setAuthOpen(false);
+
     const after = afterRef.current;
     afterRef.current = null;
     // Run synchronously so it stays inside the click gesture (otherwise the
-    // browser blocks opening WhatsApp as a popup).
+    // browser blocks opening WhatsApp).
     if (after) after(account);
   }, []);
-
-  const signUp = useCallback(
-    (data: SignUpData): AuthResult => {
-      const email = data.email.trim().toLowerCase();
-      const users = loadUsers();
-      const existing = users.find((u) => u.email === email);
-      if (existing) {
-        // Same email + same password → the user simply re-registered; treat
-        // it as a sign-in instead of failing ("sometimes it doesn't work").
-        if (existing.password === data.password) {
-          finishSuccess(existing);
-          return { ok: true };
-        }
-        return { ok: false, error: "exists" };
-      }
-      const acc: StoredAccount = { ...data, email, name: data.name.trim() };
-      users.push(acc);
-      saveUsers(users);
-      finishSuccess(acc);
-      return { ok: true };
-    },
-    [finishSuccess]
-  );
-
-  const signIn = useCallback(
-    (email: string, password: string): AuthResult => {
-      const e = email.trim().toLowerCase();
-      const acc = loadUsers().find((u) => u.email === e);
-      // Distinguish "no such account" (→ UI switches to sign-up) from a
-      // wrong password.
-      if (!acc) return { ok: false, error: "notfound" };
-      if (acc.password !== password) return { ok: false, error: "invalid" };
-      finishSuccess(acc);
-      return { ok: true };
-    },
-    [finishSuccess]
-  );
 
   const signOut = useCallback(() => {
     storageRemove(SESSION_KEY);
     setUser(null);
   }, []);
 
-  const openAuth = useCallback(
-    (afterSuccess?: (user: Account) => void, mode: "signin" | "signup" = "signup") => {
-      afterRef.current = afterSuccess ?? null;
-      setAuthMode(mode);
-      setAuthOpen(true);
-    },
-    []
-  );
+  const openAuth = useCallback((afterSuccess?: (user: Account) => void) => {
+    afterRef.current = afterSuccess ?? null;
+    setAuthOpen(true);
+  }, []);
 
   const closeAuth = useCallback(() => {
     afterRef.current = null;
@@ -168,17 +138,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{
-        user,
-        signUp,
-        signIn,
-        signOut,
-        authOpen,
-        authMode,
-        openAuth,
-        closeAuth,
-        setAuthMode,
-      }}
+      value={{ user, join, signOut, authOpen, openAuth, closeAuth }}
     >
       {children}
     </AuthContext.Provider>

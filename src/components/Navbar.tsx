@@ -62,7 +62,7 @@ export function Navbar() {
                 panelHeight={48}
                 magnification={62}
                 distance={130}
-                className="border border-white/10 bg-white/5 backdrop-blur-xl"
+                className="border border-white/10 bg-neutral-900/80"
               >
                 {links.map((l) => (
                   <a key={l.href} href={l.href} aria-label={l.label}>

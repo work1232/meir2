@@ -56,6 +56,9 @@ export type Content = {
     loginToChoose: string;
   };
   auth: {
+    authTitle: string;
+    authSubtitle: string;
+    authSubmit: string;
     signIn: string;
     signUp: string;
     signInTitle: string;
@@ -222,6 +225,9 @@ export const translations: Record<Lang, Content> = {
       loginToChoose: "התחברו כדי לבחור חבילה",
     },
     auth: {
+      authTitle: "כמה פרטים ונמשיך",
+      authSubtitle: "שם, אימייל וטלפון — פעם אחת בלבד, בלי סיסמאות.",
+      authSubmit: "המשך",
       signIn: "התחברות",
       signUp: "הרשמה",
       signInTitle: "התחברות",
@@ -390,6 +396,9 @@ export const translations: Record<Lang, Content> = {
       loginToChoose: "Sign in to choose a plan",
     },
     auth: {
+      authTitle: "A few details and we're set",
+      authSubtitle: "Name, email and phone — once, no passwords.",
+      authSubmit: "Continue",
       signIn: "Sign in",
       signUp: "Sign up",
       signInTitle: "Welcome back",

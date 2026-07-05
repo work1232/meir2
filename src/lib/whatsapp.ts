@@ -19,8 +19,9 @@ export function buildWaLinks(message: string) {
   return {
     /** Opens the WhatsApp APP directly (no browser interstitial page). */
     app: `whatsapp://send?phone=${phone}&text=${text}`,
-    /** Universal web link — works everywhere as a fallback. */
-    web: `https://wa.me/${phone}?text=${text}`,
+    /** Web link — api.whatsapp.com directly (wa.me just redirects here, so
+     * linking straight to it saves a slow extra hop). */
+    web: `https://api.whatsapp.com/send/?phone=${phone}&text=${text}&type=phone_number&app_absent=0`,
   };
 }
 

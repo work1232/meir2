@@ -106,13 +106,15 @@
 
   /* Ambient card */
   .glass-panel {
+    /* No backdrop-filter here: blurring the backdrop over a playing video is
+       one of the most expensive things a page can do. The near-opaque
+       gradient gives the same glass look for a fraction of the cost. */
     background: linear-gradient(
       180deg,
-      hsl(var(--card) / 0.9),
-      hsl(var(--card) / 0.55)
+      hsl(var(--card) / 0.96),
+      hsl(var(--card) / 0.82)
     );
     border: 1px solid hsl(var(--border));
-    backdrop-filter: blur(16px);
     box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.06),
       0 24px 60px -30px hsl(0 0% 0% / 0.8);
   }
@@ -138,13 +140,14 @@
     position: relative;
     z-index: 1;
     color: hsl(var(--foreground));
+    /* No backdrop-filter (it blurred the hero video behind every button on
+       every frame). A slightly stronger translucent fill keeps the look. */
     background: linear-gradient(
       180deg,
-      hsl(0 0% 100% / 0.14),
-      hsl(0 0% 100% / 0.04)
+      hsl(0 0% 100% / 0.18),
+      hsl(0 0% 100% / 0.07)
     );
     border: 1px solid hsl(0 0% 100% / 0.16);
-    backdrop-filter: blur(14px) saturate(140%);
     box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.35),
       inset 0 -1px 2px hsl(0 0% 0% / 0.35);
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
@@ -254,13 +257,50 @@
   .spotlight {
     position: absolute;
     border-radius: 9999px;
-    mix-blend-mode: screen;
     /* Blur each blob (not the whole overlay) + will-change: the browser caches
        the blurred layer and only transforms it — no per-frame re-blur = far
-       less GPU work while the bubbles drift. */
+       less GPU work while the bubbles drift. NOTE: no mix-blend-mode (it
+       forced a full-screen blend recomposite every frame) and the drift is
+       pure CSS — zero main-thread work. */
     filter: blur(40px);
     will-change: transform;
     transform: translateZ(0);
+  }
+
+  @keyframes spot-drift-a {
+    0% {
+      transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate3d(-32%, -64%, 0) rotate(10deg);
+    }
+    100% {
+      transform: translate3d(-64%, -36%, 0) rotate(-8deg);
+    }
+  }
+
+  @keyframes spot-drift-b {
+    0% {
+      transform: translate3d(0, 0, 0) rotate(-12deg);
+    }
+    50% {
+      transform: translate3d(14%, 18%, 0) rotate(4deg);
+    }
+    100% {
+      transform: translate3d(-12%, 8%, 0) rotate(14deg);
+    }
+  }
+
+  @keyframes spot-drift-c {
+    0% {
+      transform: translate3d(0, 0, 0) rotate(8deg);
+    }
+    50% {
+      transform: translate3d(-18%, -14%, 0) rotate(-6deg);
+    }
+    100% {
+      transform: translate3d(8%, 14%, 0) rotate(16deg);
+    }
   }
 
   .spotlight-left {
@@ -271,9 +311,10 @@
     height: min(46vw, 520px);
     background: radial-gradient(
       circle at center,
-      rgba(99, 91, 255, 0.55) 0%,
+      rgba(99, 91, 255, 0.6) 0%,
       rgba(99, 91, 255, 0) 60%
     );
+    animation: spot-drift-a 28s ease-in-out infinite alternate;
   }
 
   .spotlight-mid {
@@ -283,9 +324,10 @@
     height: min(42vw, 480px);
     background: radial-gradient(
       circle at center,
-      rgba(139, 92, 246, 0.5) 0%,
+      rgba(139, 92, 246, 0.55) 0%,
       rgba(139, 92, 246, 0) 60%
     );
+    animation: spot-drift-b 34s ease-in-out infinite alternate;
   }
 
   .spotlight-right {
@@ -295,9 +337,10 @@
     height: min(52vw, 560px);
     background: radial-gradient(
       circle at center,
-      rgba(124, 84, 255, 0.45) 0%,
+      rgba(124, 84, 255, 0.5) 0%,
       rgba(124, 84, 255, 0) 62%
     );
+    animation: spot-drift-c 40s ease-in-out infinite alternate;
   }
 
   .spotlight-content {

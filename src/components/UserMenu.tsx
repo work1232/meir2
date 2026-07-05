@@ -36,7 +36,7 @@ export function UserMenu() {
   if (!user) {
     return (
       <button
-        onClick={() => openAuth(undefined, "signin")}
+        onClick={() => openAuth()}
         className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-white/10"
       >
         <User className="h-4 w-4" />

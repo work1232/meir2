@@ -47,6 +47,9 @@ export interface GlassButtonProps
 
 const GlassButton = React.forwardRef<HTMLButtonElement, GlassButtonProps>(
   ({ className, children, size, contentClassName, ...props }, ref) => {
+    // When the wrapper is stretched (w-full), stretch the inner <button> too —
+    // otherwise the pill hugs one side of the wrapper and looks off-center.
+    const isFullWidth = className?.split(/\s+/).includes("w-full");
     return (
       <div
         className={cn(
@@ -55,7 +58,11 @@ const GlassButton = React.forwardRef<HTMLButtonElement, GlassButtonProps>(
         )}
       >
         <button
-          className={cn("glass-button", glassButtonVariants({ size }))}
+          className={cn(
+            "glass-button",
+            glassButtonVariants({ size }),
+            isFullWidth && "w-full"
+          )}
           ref={ref}
           {...props}
         >
