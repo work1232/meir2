@@ -8,6 +8,7 @@ import { useLang } from "@/i18n/LanguageProvider";
 import { useAuth, type Account } from "@/auth/AuthProvider";
 import { openWhatsApp, fillTemplate } from "@/lib/whatsapp";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { TiltCard } from "@/components/TiltCard";
 
 export function Pricing() {
   const { t } = useLang();
@@ -83,7 +84,15 @@ export function Pricing() {
 
         <div className="mx-auto mt-10 grid max-w-4xl grid-cols-3 items-stretch justify-center gap-2 sm:gap-3 md:mt-14 md:flex md:flex-row md:gap-6">
           {plans.map((plan) => (
-            <PricingCard key={plan.planName} {...plan} />
+            <TiltCard
+              key={plan.planName}
+              max={7}
+              scale={1.03}
+              glare={false}
+              className="h-full"
+            >
+              <PricingCard {...plan} />
+            </TiltCard>
           ))}
         </div>
 

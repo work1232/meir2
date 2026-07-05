@@ -141,6 +141,23 @@
     );
   }
 
+  /* Cheap 3D "lift" for small interactive chips/pills: rises toward the
+     viewer with a soft shadow on hover. Pure transform — GPU only. */
+  .lift-3d {
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.28s ease, border-color 0.28s ease;
+    will-change: transform;
+  }
+  .lift-3d:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 16px 30px -18px hsl(0 0% 0% / 0.85);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lift-3d:hover {
+      transform: none;
+    }
+  }
+
   /* ---------------------------------------------------------------- */
   /* Glass Button                                                     */
   /* ---------------------------------------------------------------- */

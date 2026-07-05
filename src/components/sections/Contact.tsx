@@ -1,6 +1,7 @@
 import { useRef, useState, type FormEvent } from "react";
 import { Mail, MessageCircle, Phone, Check } from "lucide-react";
 import { GlassButton } from "@/components/ui/glass-button";
+import { Magnetic } from "@/components/Magnetic";
 import { BackgroundVideo } from "@/components/BackgroundVideo";
 import { useLang } from "@/i18n/LanguageProvider";
 import { siteConfig } from "@/config";
@@ -80,7 +81,7 @@ export function Contact() {
                     href={m.href}
                     target={m.href.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer"
-                    className="group flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-3 transition-colors hover:border-primary/40 hover:bg-white/[0.06] lg:gap-4 lg:rounded-2xl lg:p-4"
+                    className="lift-3d group flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-3 hover:border-primary/40 hover:bg-white/[0.06] lg:gap-4 lg:rounded-2xl lg:p-4"
                   >
                     <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-white to-[#8b8b96] text-neutral-900 lg:h-11 lg:w-11 lg:rounded-xl">
                       <m.icon className="h-4 w-4 lg:h-5 lg:w-5" />
@@ -161,16 +162,18 @@ export function Contact() {
                       placeholder={t.contact.form.message}
                     />
                   </div>
-                  <GlassButton
-                    type="button"
-                    onClick={sendToWhatsApp}
-                    className="glass-primary mt-1 w-full"
-                    size="lg"
-                    contentClassName="flex w-full items-center justify-center gap-2"
-                  >
-                    {t.contact.form.submit}
-                    <MessageCircle className="h-5 w-5" />
-                  </GlassButton>
+                  <Magnetic strength={5} className="mt-1 block w-full">
+                    <GlassButton
+                      type="button"
+                      onClick={sendToWhatsApp}
+                      className="glass-primary w-full"
+                      size="lg"
+                      contentClassName="flex w-full items-center justify-center gap-2"
+                    >
+                      {t.contact.form.submit}
+                      <MessageCircle className="h-5 w-5" />
+                    </GlassButton>
+                  </Magnetic>
                 </form>
               )}
             </div>

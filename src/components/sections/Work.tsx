@@ -6,6 +6,7 @@ import {
   ImageComparisonSlider,
 } from "@/components/ui/image-comparison";
 import { GlassButton } from "@/components/ui/glass-button";
+import { Magnetic } from "@/components/Magnetic";
 import { Reveal } from "@/components/Reveal";
 import { useLang } from "@/i18n/LanguageProvider";
 
@@ -119,7 +120,7 @@ export function Work() {
                 {t.work.featuredTags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-foreground/80"
+                    className="lift-3d inline-block rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-foreground/80"
                   >
                     {tag}
                   </span>
@@ -127,15 +128,17 @@ export function Work() {
               </div>
             </div>
 
-            <a href={FEATURED_URL} target="_blank" rel="noreferrer" className="shrink-0">
-              <GlassButton
-                className="glass-primary"
-                contentClassName="flex items-center gap-2"
-              >
-                {t.work.visitSite}
-                <ArrowUpRight className="h-5 w-5" />
-              </GlassButton>
-            </a>
+            <Magnetic className="shrink-0">
+              <a href={FEATURED_URL} target="_blank" rel="noreferrer">
+                <GlassButton
+                  className="glass-primary"
+                  contentClassName="flex items-center gap-2"
+                >
+                  {t.work.visitSite}
+                  <ArrowUpRight className="h-5 w-5" />
+                </GlassButton>
+              </a>
+            </Magnetic>
           </Reveal>
 
           <Reveal delay={0.1} className="mt-8">

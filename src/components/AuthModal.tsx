@@ -144,7 +144,7 @@ export function AuthModal() {
               {error && (
                 <p
                   role="alert"
-                  className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300"
+                  className="rounded-xl border border-white/25 bg-white/10 px-4 py-3 text-sm font-medium text-white"
                 >
                   {error}
                 </p>

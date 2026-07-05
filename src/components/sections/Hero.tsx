@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { GlassButton } from "@/components/ui/glass-button";
 import { BackgroundVideo } from "@/components/BackgroundVideo";
+import { TiltCard } from "@/components/TiltCard";
+import { Magnetic } from "@/components/Magnetic";
 import { useLang } from "@/i18n/LanguageProvider";
 
 export function Hero() {
@@ -81,22 +83,26 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
-          <a href="#contact">
-            <GlassButton
-              className="glass-primary"
-              size="lg"
-              contentClassName="flex items-center gap-2"
-            >
-              {t.hero.ctaPrimary}
-              <Arrow className="h-5 w-5" />
-            </GlassButton>
-          </a>
-          <a href="#work">
-            <GlassButton size="lg" contentClassName="flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-primary" />
-              {t.hero.ctaSecondary}
-            </GlassButton>
-          </a>
+          <Magnetic>
+            <a href="#contact">
+              <GlassButton
+                className="glass-primary"
+                size="lg"
+                contentClassName="flex items-center gap-2"
+              >
+                {t.hero.ctaPrimary}
+                <Arrow className="h-5 w-5" />
+              </GlassButton>
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <a href="#work">
+              <GlassButton size="lg" contentClassName="flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-primary" />
+                {t.hero.ctaSecondary}
+              </GlassButton>
+            </a>
+          </Magnetic>
         </motion.div>
 
         {/* Stats */}
@@ -107,9 +113,10 @@ export function Hero() {
           className="mx-auto mt-16 grid w-full max-w-2xl grid-cols-3 gap-4"
         >
           {t.hero.stats.map((s) => (
-            <div
+            <TiltCard
               key={s.label}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-5 text-center backdrop-blur-sm"
+              max={12}
+              className="rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-5 text-center"
             >
               <div className="font-display text-2xl font-bold text-foreground sm:text-4xl">
                 {s.value}
@@ -117,7 +124,7 @@ export function Hero() {
               <div className="mt-1 text-xs text-muted-foreground sm:text-sm">
                 {s.label}
               </div>
-            </div>
+            </TiltCard>
           ))}
         </motion.div>
       </div>
