@@ -24,11 +24,11 @@ export function Magnetic({ children, className, strength = 8 }: MagneticProps) {
   const ref = useRef<HTMLDivElement>(null);
   const frame = useRef<number | null>(null);
 
+  // Fine-pointer devices only. Not gated on prefers-reduced-motion: the
+  // pull only moves under the user's own cursor.
   const enabled = () => {
     if (typeof window === "undefined") return false;
     if (window.matchMedia("(pointer: coarse)").matches) return false;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-      return false;
     return true;
   };
 

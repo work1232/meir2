@@ -1,10 +1,5 @@
 import { useRef, type ReactNode } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Lock } from "lucide-react";
 import {
   PricingCard,
@@ -31,7 +26,6 @@ function MonolithRise({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "center 60%"],
@@ -39,7 +33,7 @@ function MonolithRise({
   const y = useTransform(scrollYProgress, [0, 1], [lag, 0]);
 
   // ref stays attached on the fallback too, so useScroll always has a target.
-  if (isMobile || reduceMotion)
+  if (isMobile)
     return (
       <div ref={ref} className="h-full">
         {children}

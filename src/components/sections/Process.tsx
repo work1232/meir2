@@ -1,10 +1,5 @@
 import { useRef } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
 import { BackgroundVideo } from "@/components/BackgroundVideo";
 import { useLang } from "@/i18n/LanguageProvider";
@@ -15,7 +10,6 @@ export function Process() {
   // "The road": a white light-line draws itself along the steps as the
   // visitor scrolls through — showing the distance travelled on the journey.
   const roadRef = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: roadRef,
     offset: ["start 85%", "end 55%"],
@@ -48,7 +42,7 @@ export function Process() {
           {/* the light-line that draws with scroll */}
           <motion.div
             aria-hidden="true"
-            style={reduceMotion ? undefined : { scaleX: roadScale }}
+            style={{ scaleX: roadScale }}
             className="absolute inset-x-0 top-8 hidden h-px origin-left bg-gradient-to-r from-white/0 via-white/70 to-white/0 shadow-[0_0_12px_rgba(255,255,255,0.35)] rtl:origin-right lg:block"
           />
 

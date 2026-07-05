@@ -1,10 +1,5 @@
 import { useRef, type PointerEvent as ReactPointerEvent } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { GlassButton } from "@/components/ui/glass-button";
 import { BackgroundVideo } from "@/components/BackgroundVideo";
@@ -21,7 +16,6 @@ export function Hero() {
   // depth — the top line rushes toward the camera fastest, the bottom line
   // slowest — like flying THROUGH the headline into the site.
   const sectionRef = useRef<HTMLElement>(null);
-  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -33,14 +27,16 @@ export function Hero() {
   const s2 = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
   const s3 = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
   const fade = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
-  const depth = (y: typeof y1, scale: typeof s1) =>
-    reduceMotion ? undefined : { y, scale, opacity: fade };
+  const depth = (y: typeof y1, scale: typeof s1) => ({
+    y,
+    scale,
+    opacity: fade,
+  });
 
   /* --- 3D journey: mouse parallax (desktop only) --------------------- */
   const parallaxRef = useRef<HTMLDivElement>(null);
   const frame = useRef<number | null>(null);
   const onPointerMove = (e: ReactPointerEvent<HTMLElement>) => {
-    if (reduceMotion) return;
     if (window.matchMedia("(pointer: coarse)").matches) return;
     const el = parallaxRef.current;
     if (!el) return;

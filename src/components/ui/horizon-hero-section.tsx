@@ -68,10 +68,11 @@ export function CosmosJourney() {
     target: { x: 0, y: 30, z: 300 },
   });
 
-  const enabled =
-    !isMobile &&
-    typeof window !== "undefined" &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Desktop-only (iOS single WebGL context is reserved for the Spline robot).
+  // NOTE: deliberately NOT gated on prefers-reduced-motion — many Windows
+  // machines (including the owner's) have OS animations off, which would hide
+  // the whole section; the camera only moves when the user scrolls anyway.
+  const enabled = !isMobile;
 
   /* ---------------- Three.js scene ---------------- */
   useEffect(() => {
@@ -451,12 +452,21 @@ export function CosmosJourney() {
     return () => io.disconnect();
   }, [enabled]);
 
-  // Mobile / reduced-motion: skip entirely (keeps iOS WebGL free for the robot).
+  // Mobile: skip entirely (keeps iOS WebGL free for the robot).
   if (!enabled) return null;
+
+  // Each char carries the vertical gradient itself (a parent-level
+  // bg-clip-text can't color transparent child spans).
+  const titleGradient =
+    "bg-gradient-to-b from-white via-neutral-200 to-neutral-500 bg-clip-text text-transparent";
 
   const splitTitle = (text: string) =>
     text.split("").map((char, i) => (
-      <span key={i} className="title-char inline-block will-change-transform" style={{ opacity: 0 }}>
+      <span
+        key={i}
+        className={`title-char inline-block will-change-transform ${titleGradient}`}
+        style={{ opacity: 0 }}
+      >
         {char === " " ? " " : char}
       </span>
     ));
@@ -494,20 +504,26 @@ export function CosmosJourney() {
         {t.cosmos.screens.map((screen, i) => (
           <div
             key={screen.title}
-            className="flex h-screen flex-col items-center justify-center px-6 text-center"
+            className="relative flex h-screen flex-col items-center justify-center px-6 text-center"
           >
-            <h2 className="font-display text-5xl font-extralight tracking-[0.14em] text-white [text-shadow:0_0_70px_rgba(255,255,255,0.3)] sm:text-7xl lg:text-8xl">
+            {/* Dim the starfield right behind the text so it pops */}
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_42%_at_50%_50%,rgba(0,0,0,0.62),transparent_72%)]" />
+            <h2
+              className={`relative font-display text-6xl font-extrabold tracking-[0.06em] drop-shadow-[0_6px_28px_rgba(0,0,0,0.9)] sm:text-8xl lg:text-9xl ${
+                i === 0 ? "" : titleGradient
+              }`}
+            >
               {i === 0 ? splitTitle(screen.title) : screen.title}
             </h2>
             <p
-              className={`mt-8 text-base font-light leading-relaxed text-neutral-300 sm:text-xl ${
+              className={`relative mt-8 text-lg font-semibold leading-relaxed text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.95)] sm:text-2xl ${
                 i === 0 ? "cosmos-line-first" : ""
               }`}
             >
               {screen.l1}
             </p>
             <p
-              className={`mt-1 text-base font-light leading-relaxed text-neutral-300 sm:text-xl ${
+              className={`relative mt-1 text-lg font-medium leading-relaxed text-neutral-300 [text-shadow:0_2px_18px_rgba(0,0,0,0.95)] sm:text-2xl ${
                 i === 0 ? "cosmos-line-first" : ""
               }`}
             >

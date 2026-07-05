@@ -1,10 +1,5 @@
 import { useRef, type ReactNode } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 type Panel3DProps = {
@@ -25,7 +20,6 @@ type Panel3DProps = {
 export function Panel3D({ children, className, from = 10 }: Panel3DProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  const reduceMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -34,7 +28,7 @@ export function Panel3D({ children, className, from = 10 }: Panel3DProps) {
   const rotateY = useTransform(scrollYProgress, [0, 1], [from, 0]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [0.4, 1]);
 
-  if (isMobile || reduceMotion) {
+  if (isMobile) {
     // Keep the ref attached so useScroll always has a real target (otherwise
     // framer warns "target ref not hydrated" on every render).
     return (

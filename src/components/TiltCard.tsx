@@ -39,11 +39,11 @@ export function TiltCard({
   const glareRef = useRef<HTMLDivElement>(null);
   const frame = useRef<number | null>(null);
 
+  // Fine-pointer devices only. Not gated on prefers-reduced-motion: the
+  // tilt only moves under the user's own cursor.
   const enabled = () => {
     if (typeof window === "undefined") return false;
     if (window.matchMedia("(pointer: coarse)").matches) return false;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-      return false;
     return true;
   };
 
