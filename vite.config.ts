@@ -4,6 +4,11 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  // Build stamp — printed to the console so we can instantly tell whether a
+  // device is running the latest deploy or a stale cached bundle.
+  define: {
+    __BUILD_ID__: JSON.stringify(new Date().toISOString().slice(0, 16)),
+  },
   // Honor a PORT assigned by the environment (falls back to Vite's default).
   server: {
     port: process.env.PORT ? Number(process.env.PORT) : 5173,

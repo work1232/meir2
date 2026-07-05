@@ -32,6 +32,15 @@ export function AuthModal() {
   }, [authOpen, closeAuth]);
 
   const submit = () => {
+    try {
+      doSubmit();
+    } catch (err) {
+      // Never leave the button silently dead — surface whatever went wrong.
+      setError(`${t.auth.errUnknown} ${String(err)}`);
+    }
+  };
+
+  const doSubmit = () => {
     setError("");
     if (isSignUp) {
       if (!name.trim() || !email.trim() || !phone.trim() || !password) {

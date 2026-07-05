@@ -14,16 +14,53 @@ export type SignUpData = StoredAccount;
 const USERS_KEY = "studio-m-users";
 const SESSION_KEY = "studio-m-session";
 
+/**
+ * Storage that NEVER throws. iOS Safari in private browsing and some in-app
+ * browsers (Instagram/Facebook) block localStorage — a raw setItem there
+ * throws, which used to crash sign-up silently ("the button does nothing").
+ * When localStorage is unavailable we fall back to in-memory storage, so
+ * login still works for the current visit.
+ */
+const memStore: Record<string, string> = {};
+
+function storageGet(key: string): string | null {
+  try {
+    const v = localStorage.getItem(key);
+    if (v !== null) return v;
+  } catch {
+    /* blocked */
+  }
+  return key in memStore ? memStore[key] : null;
+}
+
+function storageSet(key: string, value: string) {
+  memStore[key] = value;
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    /* blocked — memStore already holds it */
+  }
+}
+
+function storageRemove(key: string) {
+  delete memStore[key];
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    /* blocked */
+  }
+}
+
 function loadUsers(): StoredAccount[] {
   try {
-    const raw = localStorage.getItem(USERS_KEY);
+    const raw = storageGet(USERS_KEY);
     return raw ? (JSON.parse(raw) as StoredAccount[]) : [];
   } catch {
     return [];
   }
 }
 function saveUsers(users: StoredAccount[]) {
-  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  storageSet(USERS_KEY, JSON.stringify(users));
 }
 
 export type AuthResult = {
@@ -51,7 +88,7 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<Account | null>(() => {
     if (typeof window === "undefined") return null;
-    const email = localStorage.getItem(SESSION_KEY);
+    const email = storageGet(SESSION_KEY);
     if (!email) return null;
     const acc = loadUsers().find((u) => u.email === email);
     return acc ? { name: acc.name, email: acc.email, phone: acc.phone } : null;
@@ -63,7 +100,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const finishSuccess = useCallback((acc: StoredAccount) => {
     const account: Account = { name: acc.name, email: acc.email, phone: acc.phone };
-    localStorage.setItem(SESSION_KEY, acc.email);
+    storageSet(SESSION_KEY, acc.email);
     setUser(account);
     setAuthOpen(false);
     const after = afterRef.current;
@@ -111,7 +148,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 
   const signOut = useCallback(() => {
-    localStorage.removeItem(SESSION_KEY);
+    storageRemove(SESSION_KEY);
     setUser(null);
   }, []);
 

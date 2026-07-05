@@ -77,6 +77,7 @@ export type Content = {
     errInvalid: string;
     errFields: string;
     errNotFound: string;
+    errUnknown: string;
   };
   contact: {
     kicker: string;
@@ -242,6 +243,7 @@ export const translations: Record<Lang, Content> = {
       errInvalid: "הסיסמה שגויה — נסו שוב.",
       errFields: "נא למלא את כל השדות.",
       errNotFound: "לא מצאנו חשבון עם האימייל הזה — מילאנו לכם את טופס ההרשמה.",
+      errUnknown: "אירעה שגיאה:",
     },
     contact: {
       kicker: "בואו נתחיל",
@@ -409,6 +411,7 @@ export const translations: Record<Lang, Content> = {
       errInvalid: "Wrong password — try again.",
       errFields: "Please fill in all fields.",
       errNotFound: "No account with that email — we've switched you to sign-up.",
+      errUnknown: "Something went wrong:",
     },
     contact: {
       kicker: "Let's start",
