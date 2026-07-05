@@ -77,6 +77,20 @@
       scroll-behavior: auto !important;
     }
   }
+
+  /* iOS/Safari draws a giant (crossed-out) play glyph on background videos
+     whenever it suppresses autoplay (e.g. Low Power Mode). These are
+     decorative background videos — never show native controls over them. */
+  video::-webkit-media-controls,
+  video::-webkit-media-controls-panel,
+  video::-webkit-media-controls-start-playback-button,
+  video::-webkit-media-controls-overlay-play-button {
+    display: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
 }
 
 @layer components {

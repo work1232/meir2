@@ -33,7 +33,24 @@ export function BackgroundVideo({ src, className, poster }: BackgroundVideoProps
     );
 
     io.observe(video);
-    return () => io.disconnect();
+
+    // iOS suppresses autoplay in Low Power Mode. The first real user gesture
+    // is allowed to start playback — use it to revive a visible, paused video.
+    const revive = () => {
+      const v = ref.current;
+      if (!v || !v.paused) return;
+      const r = v.getBoundingClientRect();
+      const visible = r.bottom > 0 && r.top < window.innerHeight;
+      if (visible) v.play().catch(() => {});
+    };
+    window.addEventListener("touchend", revive, { passive: true });
+    window.addEventListener("click", revive, true);
+
+    return () => {
+      io.disconnect();
+      window.removeEventListener("touchend", revive);
+      window.removeEventListener("click", revive, true);
+    };
   }, []);
 
   return (

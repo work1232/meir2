@@ -1,5 +1,6 @@
 import SpotlightBackground from "@/components/ui/spotlight-background";
 import { AuthModal } from "@/components/AuthModal";
+import { Scroll3D } from "@/components/Scroll3D";
 import { Navbar } from "@/components/Navbar";
 import { FloatingMenu } from "@/components/FloatingMenu";
 import { Hero } from "@/components/sections/Hero";
@@ -19,13 +20,13 @@ export default function App() {
 
       <Navbar />
       <main className="overflow-x-clip">
-        <Hero />
-        <Marquee />
-        <About />
-        <Work />
-        <Process />
-        <Pricing />
-        <Contact />
+        <Scroll3D><Hero /></Scroll3D>
+        <Scroll3D><Marquee /></Scroll3D>
+        <Scroll3D><About /></Scroll3D>
+        <Scroll3D><Work /></Scroll3D>
+        <Scroll3D><Process /></Scroll3D>
+        <Scroll3D><Pricing /></Scroll3D>
+        <Scroll3D><Contact /></Scroll3D>
       </main>
       <Footer />
       <FloatingMenu />
