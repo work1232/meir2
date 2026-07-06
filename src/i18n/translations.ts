@@ -13,10 +13,12 @@ export type Content = {
     ctaSecondary: string;
     stats: { value: string; label: string }[];
   };
-  cosmos: {
-    screens: { title: string; l1: string; l2: string }[];
-    scroll: string;
+  approach: {
+    kicker: string;
+    title: string;
+    items: { title: string; desc: string }[];
   };
+  statsBand: { value: string; label: string }[];
   marquee: string[];
   about: {
     kicker: string;
@@ -101,7 +103,15 @@ export type Content = {
       sent: string;
     };
   };
-  footer: { tagline: string; rights: string; madeWith: string };
+  footer: {
+    tagline: string;
+    rights: string;
+    madeWith: string;
+    quickTitle: string;
+    servicesTitle: string;
+    contactTitle: string;
+    hours: string;
+  };
   langToggle: string;
 };
 
@@ -131,26 +141,35 @@ export const translations: Record<Lang, Content> = {
         { value: "99%", label: "שביעות רצון" },
       ],
     },
-    cosmos: {
-      screens: [
+    approach: {
+      kicker: "הגישה שלי",
+      title: "לעצב. לתכנן. לבנות. לדייק.",
+      items: [
         {
-          title: "האופק",
-          l1: "איפה שחזון פוגש מציאות,",
-          l2: "שם אנחנו מעצבים את המחר.",
+          title: "עיצוב מתוך מחשבה",
+          desc: "יצירתיות ופונקציונליות שנתפרות בדיוק לחזון ולמותג שלכם.",
         },
         {
-          title: "היקום",
-          l1: "מעבר לגבולות הדמיון,",
-          l2: "שוכן יקום של אפשרויות.",
+          title: "תכנון חכם",
+          desc: "כל מסך וכל כפתור מתוכננים מראש — מסע משתמש שמוביל לפעולה.",
         },
         {
-          title: "האינסוף",
-          l1: "במרחב שבין רעיון ליצירה,",
-          l2: "נמצאת המהות של חדשנות אמיתית.",
+          title: "בנייה איכותית",
+          desc: "קוד נקי, מהיר ומאובטח — בסטנדרטים הגבוהים בתעשייה.",
+        },
+        {
+          title: "עמידות בזמן",
+          desc: "עיצוב שנשאר רלוונטי ומרשים גם שנים קדימה.",
         },
       ],
-      scroll: "גללו",
     },
+    statsBand: [
+      { value: "8", label: "שנות ניסיון" },
+      { value: "+120", label: "פרויקטים שהושקו" },
+      { value: "99%", label: "שביעות רצון" },
+      { value: "+35", label: "לקוחות קבועים" },
+      { value: "5★", label: "דירוג ממוצע" },
+    ],
     marquee: [
       "עיצוב UI/UX",
       "פיתוח אתרים",
@@ -209,10 +228,12 @@ export const translations: Record<Lang, Content> = {
       kicker: "איך זה עובד",
       title: "תהליך פשוט. תוצאה מרשימה.",
       steps: [
-        { no: "01", title: "אפיון ואסטרטגיה", desc: "מבינים את המטרות, הקהל והמתחרים — ובונים תוכנית פעולה ברורה." },
-        { no: "02", title: "עיצוב", desc: "מוקאפים חיים שמראים בדיוק איך האתר ייראה, עד לפרט האחרון." },
-        { no: "03", title: "פיתוח", desc: "בונים אתר מהיר, רספונסיבי ונקי — עם אנימציות שמרגישות פרימיום." },
-        { no: "04", title: "עלייה לאוויר", desc: "בדיקות, אופטימיזציה, השקה — וליווי גם אחרי שהאתר עלה." },
+        { no: "01", title: "ייעוץ והיכרות", desc: "שיחה ראשונה להבנת הצרכים, המטרות והחזון שלכם." },
+        { no: "02", title: "אפיון ואסטרטגיה", desc: "ממפים קהל, מתחרים ומטרות — ובונים תוכנית ברורה." },
+        { no: "03", title: "עיצוב", desc: "מוקאפים חיים שמראים בדיוק איך האתר ייראה." },
+        { no: "04", title: "פיתוח", desc: "אתר מהיר, רספונסיבי ונקי — עם אנימציות פרימיום." },
+        { no: "05", title: "השקה ומסירה", desc: "בדיקות, אופטימיזציה ועלייה לאוויר — מוכן ומדויק." },
+        { no: "06", title: "ליווי ותמיכה", desc: "נשארים איתכם גם אחרי ההשקה — עדכונים ושיפורים." },
       ],
     },
     pricing: {
@@ -294,6 +315,10 @@ export const translations: Record<Lang, Content> = {
       tagline: "עיצוב ובניית אתרים פרימיום.",
       rights: "כל הזכויות שמורות.",
       madeWith: "נבנה באהבה ובקוד נקי",
+      quickTitle: "ניווט מהיר",
+      servicesTitle: "שירותים",
+      contactTitle: "צרו קשר",
+      hours: "א׳–ה׳ · 9:00–18:00",
     },
     langToggle: "EN",
   },
@@ -322,26 +347,35 @@ export const translations: Record<Lang, Content> = {
         { value: "99%", label: "Client satisfaction" },
       ],
     },
-    cosmos: {
-      screens: [
+    approach: {
+      kicker: "My approach",
+      title: "Design. Plan. Build. Perfect.",
+      items: [
         {
-          title: "HORIZON",
-          l1: "Where vision meets reality,",
-          l2: "we shape the future of tomorrow.",
+          title: "Thoughtful Design",
+          desc: "Creativity and function tailored precisely to your vision and brand.",
         },
         {
-          title: "COSMOS",
-          l1: "Beyond the boundaries of imagination,",
-          l2: "lies the universe of possibilities.",
+          title: "Smart Planning",
+          desc: "Every screen and button planned ahead — a user journey that converts.",
         },
         {
-          title: "INFINITY",
-          l1: "In the space between thought and creation,",
-          l2: "we find the essence of true innovation.",
+          title: "Quality Build",
+          desc: "Clean, fast, secure code — built to the industry's highest standards.",
+        },
+        {
+          title: "Built to Last",
+          desc: "Design that stays relevant and impressive for years to come.",
         },
       ],
-      scroll: "SCROLL",
     },
+    statsBand: [
+      { value: "8", label: "Years of experience" },
+      { value: "120+", label: "Projects shipped" },
+      { value: "99%", label: "Client satisfaction" },
+      { value: "35+", label: "Returning clients" },
+      { value: "5★", label: "Average rating" },
+    ],
     marquee: [
       "UI/UX Design",
       "Web Development",
@@ -400,10 +434,12 @@ export const translations: Record<Lang, Content> = {
       kicker: "How it works",
       title: "Simple process. Stunning result.",
       steps: [
-        { no: "01", title: "Discovery & Strategy", desc: "We map your goals, audience and competitors — and set a clear plan." },
-        { no: "02", title: "Design", desc: "Live mockups that show exactly how your site will look, down to the detail." },
-        { no: "03", title: "Development", desc: "A fast, responsive, clean build — with animations that feel premium." },
-        { no: "04", title: "Launch", desc: "Testing, optimization, go-live — plus support after you're live." },
+        { no: "01", title: "Consultation", desc: "A first call to understand your needs, goals and vision." },
+        { no: "02", title: "Discovery & Strategy", desc: "We map your audience, competitors and goals into a clear plan." },
+        { no: "03", title: "Design", desc: "Live mockups that show exactly how your site will look." },
+        { no: "04", title: "Development", desc: "A fast, responsive, clean build with premium animations." },
+        { no: "05", title: "Launch & Handover", desc: "Testing, optimization and go-live — polished and ready." },
+        { no: "06", title: "Ongoing Support", desc: "We stay with you after launch — updates and improvements." },
       ],
     },
     pricing: {
@@ -485,6 +521,10 @@ export const translations: Record<Lang, Content> = {
       tagline: "Premium web design & development.",
       rights: "All rights reserved.",
       madeWith: "Built with love and clean code",
+      quickTitle: "Quick links",
+      servicesTitle: "Services",
+      contactTitle: "Contact us",
+      hours: "Sun–Thu · 9:00–18:00",
     },
     langToggle: "עב",
   },
