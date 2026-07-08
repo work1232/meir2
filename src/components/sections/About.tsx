@@ -35,7 +35,7 @@ function MobileServices({
             aria-hidden="true"
             className="absolute inset-0 h-full w-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#2E1E15] via-[#2E1E15]/85 to-[#2E1E15]/30" />
           <div className="relative flex h-full flex-col justify-end p-3">
             <span className="mb-1.5 grid h-7 w-7 place-items-center rounded-full border border-primary/30 bg-primary/15 text-xs font-bold text-primary">
               {i + 1}
@@ -138,10 +138,10 @@ export function About() {
       <div className="container-x">
         {/* About — "מי אני" with interactive 3D scene */}
         <Reveal>
-          <Card className="relative w-full overflow-hidden rounded-3xl border-white/10 bg-black/[0.96] shadow-2xl shadow-black/60">
+          <Card className="relative w-full overflow-hidden rounded-3xl border-[#2E1E15] bg-[#2E1E15] shadow-2xl shadow-[#2E1E15]/40">
             <Spotlight
               className="-top-40 left-0 md:-top-20 md:left-60"
-              fill="#dcdce4"
+              fill="#E7C89B"
             />
 
             <div className="flex flex-col md:flex-row">
@@ -160,7 +160,7 @@ export function About() {
                 <ul className="mt-7 grid gap-3">
                   {t.about.points.map((p) => (
                     <li key={p} className="flex items-start gap-3">
-                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-to-br from-white to-[#8b8b96] text-neutral-900">
+                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#E7C89B] to-[#C58B47] text-[#2E1E15]">
                         <Check className="h-3.5 w-3.5" strokeWidth={3} />
                       </span>
                       <span className="text-base font-medium text-neutral-200">
@@ -216,7 +216,7 @@ export function About() {
             {t.about.services.map((s) => (
               <span
                 key={s.title}
-                className="lift-3d inline-block rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-foreground/85 hover:border-primary/40 hover:text-foreground"
+                className="lift-3d inline-block rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-medium text-foreground/85 hover:border-primary/50 hover:text-foreground"
               >
                 {s.title}
               </span>

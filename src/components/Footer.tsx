@@ -56,20 +56,20 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-white/10 bg-white/[0.02]">
+    <footer className="border-t border-[#2E1E15] bg-[#2E1E15]">
       <div className="container-x py-16">
         <div className="grid gap-10 text-center sm:grid-cols-2 sm:text-start lg:grid-cols-4">
           {/* Brand + socials */}
           <div>
             <div className="flex items-center justify-center gap-2 sm:justify-start">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-white to-[#8b8b96] font-display text-lg font-bold text-neutral-900">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-[#E7C89B] to-[#C58B47] font-display text-lg font-bold text-[#2E1E15]">
                 {siteConfig.brand.replace(/[^A-Za-z]/g, "").slice(-1) || "M"}
               </span>
-              <span className="font-display text-lg font-bold">
+              <span className="font-display text-lg font-bold text-white">
                 {siteConfig.brand}
               </span>
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-sm leading-relaxed text-white/60">
               {t.footer.tagline}
             </p>
             <div className="mt-5 flex items-center justify-center gap-3 sm:justify-start">
@@ -80,7 +80,7 @@ export function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={s.label}
-                  className="lift-3d grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                  className="lift-3d grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-white/60 hover:border-[#E7C89B]/50 hover:text-white"
                 >
                   <s.icon className="h-5 w-5" />
                 </a>
@@ -90,7 +90,7 @@ export function Footer() {
 
           {/* Quick links */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-foreground/90">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-[#E7C89B]">
               {t.footer.quickTitle}
             </h3>
             <ul className="mt-4 space-y-2.5">
@@ -98,7 +98,7 @@ export function Footer() {
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm text-white/55 transition-colors hover:text-white"
                   >
                     {l.label}
                   </a>
@@ -109,7 +109,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-foreground/90">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-[#E7C89B]">
               {t.footer.servicesTitle}
             </h3>
             <ul className="mt-4 space-y-2.5">
@@ -117,7 +117,7 @@ export function Footer() {
                 <li key={s.title}>
                   <a
                     href="#services"
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm text-white/55 transition-colors hover:text-white"
                   >
                     {s.title}
                   </a>
@@ -128,7 +128,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-foreground/90">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-[#E7C89B]">
               {t.footer.contactTitle}
             </h3>
             <ul className="mt-4 space-y-3">
@@ -138,7 +138,7 @@ export function Footer() {
                     href={c.href}
                     target={c.href.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer"
-                    className="group flex items-center justify-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-foreground sm:justify-start"
+                    className="group flex items-center justify-center gap-2.5 text-sm text-white/55 transition-colors hover:text-white sm:justify-start"
                   >
                     <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5 transition-colors group-hover:border-primary/40">
                       <c.icon className="h-4 w-4" />
@@ -147,7 +147,7 @@ export function Footer() {
                   </a>
                 </li>
               ))}
-              <li className="flex items-center justify-center gap-2.5 text-sm text-muted-foreground sm:justify-start">
+              <li className="flex items-center justify-center gap-2.5 text-sm text-white/55 sm:justify-start">
                 <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5">
                   <Clock className="h-4 w-4" />
                 </span>
@@ -157,7 +157,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-sm text-muted-foreground sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-sm text-white/50 sm:flex-row">
           <span>
             © {year} {siteConfig.brand}. {t.footer.rights}
           </span>

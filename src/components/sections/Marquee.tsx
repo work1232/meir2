@@ -5,7 +5,7 @@ export function Marquee() {
   const items = [...t.marquee, ...t.marquee];
 
   return (
-    <div className="relative border-y border-white/10 bg-white/[0.02] py-5">
+    <div className="relative border-y border-black/5 bg-white/60 py-5">
       <div className="pointer-events-none absolute inset-y-0 start-0 z-10 w-24 bg-gradient-to-r from-background to-transparent rtl:bg-gradient-to-l" />
       <div className="pointer-events-none absolute inset-y-0 end-0 z-10 w-24 bg-gradient-to-l from-background to-transparent rtl:bg-gradient-to-r" />
       <div className="flex w-max animate-marquee items-center gap-10 will-change-transform">

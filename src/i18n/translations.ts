@@ -19,6 +19,23 @@ export type Content = {
     items: { title: string; desc: string }[];
   };
   statsBand: { value: string; label: string }[];
+  testimonials: {
+    kicker: string;
+    title: string;
+    items: { name: string; role: string; text: string }[];
+  };
+  faq: {
+    kicker: string;
+    title: string;
+    items: { q: string; a: string }[];
+  };
+  ctaBand: {
+    title: string;
+    subtitle: string;
+    primary: string;
+    secondary: string;
+    waText: string;
+  };
   marquee: string[];
   about: {
     kicker: string;
@@ -170,6 +187,60 @@ export const translations: Record<Lang, Content> = {
       { value: "+35", label: "לקוחות קבועים" },
       { value: "5★", label: "דירוג ממוצע" },
     ],
+    testimonials: {
+      kicker: "לקוחות מספרים",
+      title: "מה אומרים עליי",
+      items: [
+        {
+          name: "יוסי מוזס",
+          role: "שפע אצל יוסי — מכולת אונליין",
+          text: "מאיר בנה לנו אתר שהלקוחות פשוט מתאהבים בו. תוך שבוע ראינו יותר פניות מהאתר מאשר בחודשים שלמים.",
+        },
+        {
+          name: "דנה לוי",
+          role: "סטודיו לעיצוב פנים",
+          text: "רמת הגימור והאנימציות — כמו של מותגים גדולים. התהליך היה מהיר, ברור ובלי כאבי ראש.",
+        },
+        {
+          name: "אבי כהן",
+          role: "מסעדת שף",
+          text: "ההשקעה החזירה את עצמה בחודש הראשון. שירות אישי, זמין, ותוצאה שמרגישה פרימיום אמיתי.",
+        },
+      ],
+    },
+    faq: {
+      kicker: "שאלות נפוצות",
+      title: "כל מה שרציתם לדעת",
+      items: [
+        {
+          q: "כמה זמן לוקח לבנות אתר?",
+          a: "אתר תדמית מלא בדרך כלל מוכן תוך 7–14 ימי עבודה, כולל סבבי תיקונים. פרויקטים גדולים יותר — לפי היקף, עם לוח זמנים סגור מראש.",
+        },
+        {
+          q: "מה כלול במחיר?",
+          a: "עיצוב מותאם אישית, פיתוח מלא, התאמה מושלמת למובייל, אנימציות פרימיום ו-SEO בסיסי. בלי הפתעות ובלי תוספות נסתרות.",
+        },
+        {
+          q: "אפשר לעדכן תוכן לבד אחרי ההשקה?",
+          a: "כן. אני בונה את האתר כך שתוכלו לעדכן טקסטים ותמונות בקלות, ומלווה אתכם עד שאתם שולטים בזה.",
+        },
+        {
+          q: "האתר יהיה מהיר ומותאם לגוגל?",
+          a: "בהחלט. מהירות טעינה, מבנה סמנטי נקי ותשתית SEO הם חלק מהסטנדרט — לא תוספת בתשלום.",
+        },
+        {
+          q: "מה לגבי דומיין ואחסון?",
+          a: "אני עוזר לכם לרכוש ולחבר דומיין ואחסון על שמכם — הכל נשאר בבעלותכם המלאה.",
+        },
+      ],
+    },
+    ctaBand: {
+      title: "מוכנים לאתר שנראה מיליון דולר?",
+      subtitle: "בואו נהפוך את הרעיון שלכם לאתר שמוכר — נתחיל בשיחה קצרה.",
+      primary: "דברו איתי בוואטסאפ",
+      secondary: "צפו בעבודות",
+      waText: "היי מאיר! אשמח לשמוע על בניית אתר 🙂",
+    },
     marquee: [
       "עיצוב UI/UX",
       "פיתוח אתרים",
@@ -376,6 +447,60 @@ export const translations: Record<Lang, Content> = {
       { value: "35+", label: "Returning clients" },
       { value: "5★", label: "Average rating" },
     ],
+    testimonials: {
+      kicker: "Client stories",
+      title: "What clients say",
+      items: [
+        {
+          name: "Yossi Mozes",
+          role: "Shefa Deli — online grocery",
+          text: "Meir built us a site customers simply fall in love with. Within a week we saw more inquiries than in whole months before.",
+        },
+        {
+          name: "Dana Levi",
+          role: "Interior design studio",
+          text: "The finish and animations feel like a big-brand site. The process was fast, clear and completely painless.",
+        },
+        {
+          name: "Avi Cohen",
+          role: "Chef restaurant",
+          text: "The investment paid for itself in the first month. Personal service, always available, truly premium result.",
+        },
+      ],
+    },
+    faq: {
+      kicker: "FAQ",
+      title: "Everything you wanted to know",
+      items: [
+        {
+          q: "How long does a website take?",
+          a: "A full brand site is usually ready in 7–14 working days, including revision rounds. Larger projects get a clear timeline up front.",
+        },
+        {
+          q: "What's included in the price?",
+          a: "Custom design, full development, perfect mobile fit, premium animations and basic SEO. No surprises, no hidden extras.",
+        },
+        {
+          q: "Can I update content myself after launch?",
+          a: "Yes. The site is built so you can easily update texts and images, and I'll guide you until you're comfortable.",
+        },
+        {
+          q: "Will the site be fast and Google-friendly?",
+          a: "Absolutely. Loading speed, clean semantic structure and SEO foundations are part of the standard — not a paid add-on.",
+        },
+        {
+          q: "What about domain and hosting?",
+          a: "I'll help you purchase and connect a domain and hosting in your name — everything stays fully yours.",
+        },
+      ],
+    },
+    ctaBand: {
+      title: "Ready for a million-dollar website?",
+      subtitle: "Let's turn your idea into a website that sells — starting with a short chat.",
+      primary: "Chat on WhatsApp",
+      secondary: "See the work",
+      waText: "Hi Meir! I'd love to hear about building a website 🙂",
+    },
     marquee: [
       "UI/UX Design",
       "Web Development",

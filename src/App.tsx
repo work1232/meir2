@@ -8,6 +8,9 @@ import { Hero } from "@/components/sections/Hero";
 import { Marquee } from "@/components/sections/Marquee";
 import { Approach } from "@/components/sections/Approach";
 import { StatsBand } from "@/components/sections/StatsBand";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { Faq } from "@/components/sections/Faq";
+import { CtaBand } from "@/components/sections/CtaBand";
 import { About } from "@/components/sections/About";
 import { Work } from "@/components/sections/Work";
 import { Process } from "@/components/sections/Process";
@@ -32,6 +35,9 @@ export default function App() {
         <Scroll3D><StatsBand /></Scroll3D>
         <Scroll3D><Process /></Scroll3D>
         <Scroll3D><Pricing /></Scroll3D>
+        <Scroll3D><Testimonials /></Scroll3D>
+        <Scroll3D><Faq /></Scroll3D>
+        <Scroll3D><CtaBand /></Scroll3D>
         <Scroll3D><Contact /></Scroll3D>
       </main>
       <Footer />

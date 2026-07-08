@@ -59,7 +59,7 @@ export function AuthModal() {
   };
 
   const inputClass =
-    "h-12 w-full rounded-xl border border-white/12 bg-white/5 ps-11 pe-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30";
+    "h-12 w-full rounded-xl border border-black/10 bg-[#FAF7F2] ps-11 pe-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30";
 
   return (
     <AnimatePresence>
@@ -90,12 +90,12 @@ export function AuthModal() {
             <button
               onClick={closeAuth}
               aria-label="Close"
-              className="absolute end-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition-colors hover:text-foreground"
+              className="absolute end-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-black/5 text-muted-foreground transition-colors hover:text-foreground"
             >
               <X className="h-5 w-5" />
             </button>
 
-            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-white to-[#8b8b96] text-neutral-900 shadow-lg shadow-white/20">
+            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-[#E7C89B] to-[#C58B47] text-white shadow-lg shadow-[#C58B47]/30">
               <User className="h-6 w-6" />
             </span>
             <h2 className="mt-5 text-2xl font-bold">{t.auth.authTitle}</h2>
@@ -144,7 +144,7 @@ export function AuthModal() {
               {error && (
                 <p
                   role="alert"
-                  className="rounded-xl border border-white/25 bg-white/10 px-4 py-3 text-sm font-medium text-white"
+                  className="rounded-xl border border-[#C58B47]/40 bg-[#C58B47]/10 px-4 py-3 text-sm font-medium text-[#7a4a17]"
                 >
                   {error}
                 </p>

@@ -39,17 +39,17 @@ export function Navbar() {
       <div
         className={`transition-all duration-500 ${
           scrolled
-            ? "border-b border-white/10 bg-background/70 backdrop-blur-xl"
+            ? "border-b border-white/10 bg-[#2E1E15]/85 backdrop-blur-xl"
             : "border-b border-transparent bg-transparent"
         }`}
       >
         <nav className="container-x relative flex h-16 items-center justify-between md:h-20">
           {/* Brand */}
           <a href="#top" className="group z-10 flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-white to-[#8b8b96] font-display text-sm font-bold text-neutral-900 shadow-lg shadow-white/20">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-[#E7C89B] to-[#C58B47] font-display text-sm font-bold text-[#2E1E15] shadow-lg shadow-[#C58B47]/30">
               {brandInitials}
             </span>
-            <span className="font-display text-lg font-bold tracking-tight">
+            <span className="font-display text-lg font-bold tracking-tight text-white">
               {siteConfig.brand}
             </span>
           </a>
@@ -62,16 +62,16 @@ export function Navbar() {
                 panelHeight={48}
                 magnification={62}
                 distance={130}
-                className="border border-white/10 bg-neutral-900/80"
+                className="border border-white/10 bg-[#2E1E15]/85"
               >
                 {links.map((l) => (
                   <a key={l.href} href={l.href} aria-label={l.label}>
                     <DockItem className="aspect-square rounded-full border border-white/10 bg-white/10 transition-colors hover:bg-white/[0.18]">
-                      <DockLabel className="border-white/10 bg-neutral-900/90">
+                      <DockLabel className="border-white/10 bg-[#2E1E15]/95">
                         {l.label}
                       </DockLabel>
                       <DockIcon>
-                        <l.Icon className="h-full w-full text-foreground/85" />
+                        <l.Icon className="h-full w-full text-white/85" />
                       </DockIcon>
                     </DockItem>
                   </a>
@@ -85,7 +85,7 @@ export function Navbar() {
             <button
               onClick={toggle}
               aria-label="Switch language"
-              className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-white/10"
+              className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20"
             >
               <Globe className="h-4 w-4" />
               {t.langToggle}

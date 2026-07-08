@@ -56,7 +56,7 @@ export function Work() {
 
         <Reveal delay={0.1} className="mx-auto mt-14 max-w-5xl">
           <Panel3D from={-9}>
-          <div className="rounded-[2rem] border border-white/12 bg-gradient-to-b from-white/[0.06] to-transparent p-2 shadow-2xl shadow-black/60 backdrop-blur-sm sm:p-3">
+          <div className="rounded-[2rem] border border-black/10 bg-white p-2 shadow-2xl shadow-[#2E1E15]/15 sm:p-3">
             <div className="relative overflow-hidden rounded-[1.5rem]">
               <ImageComparison
                 className="aspect-[16/10] w-full bg-[#0d0d14]"
@@ -106,10 +106,10 @@ export function Work() {
         <div className="mx-auto mt-24 max-w-5xl">
           <Reveal className="grid items-end gap-6 md:grid-cols-[1fr_auto]">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-sm font-semibold text-neutral-200">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                 </span>
                 {t.work.featuredKicker}
               </span>
@@ -123,7 +123,7 @@ export function Work() {
                 {t.work.featuredTags.map((tag) => (
                   <span
                     key={tag}
-                    className="lift-3d inline-block rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-foreground/80"
+                    className="lift-3d inline-block rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-foreground/80"
                   >
                     {tag}
                   </span>
@@ -146,7 +146,7 @@ export function Work() {
 
           <Reveal delay={0.1} className="mt-8">
             <Panel3D from={9}>
-            <div className="overflow-hidden rounded-2xl border border-white/12 bg-[#14141c] shadow-2xl shadow-black/60">
+            <div className="overflow-hidden rounded-2xl border border-[#2E1E15]/40 bg-[#2E1E15] shadow-2xl shadow-[#2E1E15]/30">
               {/* Browser chrome */}
               <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.04] px-4 py-3">
                 <div className="flex gap-1.5">
@@ -177,7 +177,7 @@ export function Work() {
                     referrerPolicy="no-referrer"
                   />
                 ) : (
-                  <div className="absolute inset-0 grid place-items-center bg-[#14141c]">
+                  <div className="absolute inset-0 grid place-items-center bg-[#2E1E15]">
                     <span className="loader" />
                   </div>
                 )}

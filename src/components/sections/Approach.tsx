@@ -23,7 +23,7 @@ export function Approach() {
             {t.approach.title}
           </h2>
           {/* short underline, like the reference */}
-          <span className="mx-auto mt-6 block h-0.5 w-16 rounded-full bg-gradient-to-r from-white to-neutral-600" />
+          <span className="mx-auto mt-6 block h-0.5 w-16 rounded-full bg-gradient-to-r from-[#C58B47] to-[#E7C89B]" />
         </Reveal>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -33,9 +33,9 @@ export function Approach() {
               <Reveal key={item.title} delay={i * 0.08} className="h-full">
                 <TiltCard
                   max={8}
-                  className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-7 text-center"
+                  className="h-full rounded-2xl border border-black/5 bg-white p-7 text-center shadow-lg shadow-[#2E1E15]/5"
                 >
-                  <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl border border-white/15 bg-white/5 text-white">
+                  <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl border border-primary/25 bg-primary/10 text-primary">
                     <Icon className="h-6 w-6" strokeWidth={1.5} />
                   </span>
                   <h3 className="mt-5 text-lg font-bold">{item.title}</h3>

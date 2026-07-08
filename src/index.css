@@ -4,27 +4,30 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
+    /* Premium warm palette: cream / espresso / caramel gold.
+       #FAF7F2 bg · #FFFFFF surface · #222 text · #6B6B6B muted ·
+       #C58B47 primary · #2E1E15 secondary · #E7C89B accent */
+    --background: 37 44% 96%;
+    --foreground: 0 0% 13%;
 
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 13%;
 
-    --muted: 0 0% 14%;
-    --muted-foreground: 0 0% 64%;
+    --muted: 35 30% 90%;
+    --muted-foreground: 0 0% 42%;
 
-    --border: 0 0% 16%;
-    --input: 0 0% 18%;
+    --border: 33 25% 86%;
+    --input: 33 25% 84%;
 
-    --primary: 0 0% 86%;
-    --primary-foreground: 0 0% 8%;
+    --primary: 32 52% 53%;
+    --primary-foreground: 0 0% 100%;
 
-    --ring: 0 0% 80%;
+    --ring: 32 52% 53%;
 
     --radius: 1rem;
 
     /* Ripple color for RippleButton (used in the glassy pricing section) */
-    --button-ripple-color: rgba(255, 255, 255, 0.45);
+    --button-ripple-color: rgba(197, 139, 71, 0.35);
   }
 
   * {
@@ -47,8 +50,8 @@
   }
 
   ::selection {
-    background: hsl(var(--primary) / 0.35);
-    color: hsl(var(--foreground));
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(20 37% 13%);
   }
 
   /* Scrollbar */
@@ -112,7 +115,7 @@
   }
 
   .text-gradient-primary {
-    background: linear-gradient(100deg, #ffffff 0%, #d4d4dc 45%, #86868f 100%);
+    background: linear-gradient(100deg, #e7c89b 0%, #c58b47 55%, #9a6a2f 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -125,12 +128,12 @@
        gradient gives the same glass look for a fraction of the cost. */
     background: linear-gradient(
       180deg,
-      hsl(var(--card) / 0.96),
-      hsl(var(--card) / 0.82)
+      hsl(0 0% 100% / 0.98),
+      hsl(37 44% 97% / 0.94)
     );
-    border: 1px solid hsl(var(--border));
-    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.06),
-      0 24px 60px -30px hsl(0 0% 0% / 0.8);
+    border: 1px solid hsl(33 25% 88%);
+    box-shadow: inset 0 1px 0 hsl(0 0% 100%),
+      0 24px 60px -30px hsl(25 40% 15% / 0.35);
   }
 
   .halo {
@@ -150,7 +153,7 @@
   }
   .lift-3d:hover {
     transform: translateY(-4px) scale(1.04);
-    box-shadow: 0 16px 30px -18px hsl(0 0% 0% / 0.85);
+    box-shadow: 0 16px 30px -18px hsl(25 40% 20% / 0.4);
   }
   @media (prefers-reduced-motion: reduce) {
     .lift-3d:hover {
@@ -170,7 +173,9 @@
   .glass-button {
     position: relative;
     z-index: 1;
-    color: hsl(var(--foreground));
+    /* Fixed white: plain glass buttons are used only on dark sections
+       (hero video, CTA band) — var(--foreground) is dark in this theme. */
+    color: hsl(0 0% 100%);
     /* No backdrop-filter (it blurred the hero video behind every button on
        every frame). A slightly stronger translucent fill keeps the look. */
     background: linear-gradient(
@@ -235,28 +240,28 @@
     opacity: 0.9;
   }
 
-  /* Primary (accent-filled) variant */
+  /* Primary (accent-filled) variant — caramel gold gradient with warm glow */
   .glass-primary .glass-button {
-    color: hsl(0 0% 10%);
+    color: hsl(0 0% 100%);
     background: linear-gradient(
       180deg,
-      hsl(0 0% 98%),
-      hsl(0 0% 72%)
+      hsl(35 61% 64%),
+      hsl(32 52% 46%)
     );
-    border-color: hsl(0 0% 100% / 0.75);
-    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.9),
-      inset 0 -2px 4px hsl(0 0% 40% / 0.55),
-      0 10px 30px -10px hsl(0 0% 85% / 0.55);
+    border-color: hsl(35 61% 76% / 0.8);
+    box-shadow: inset 0 1px 0 hsl(35 61% 85% / 0.9),
+      inset 0 -2px 4px hsl(25 50% 28% / 0.5),
+      0 10px 30px -10px hsl(32 52% 45% / 0.6);
   }
 
   .glass-primary .glass-button:hover {
-    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.95),
-      inset 0 -2px 4px hsl(0 0% 40% / 0.55),
-      0 16px 40px -10px hsl(0 0% 90% / 0.75);
+    box-shadow: inset 0 1px 0 hsl(35 61% 88% / 0.95),
+      inset 0 -2px 4px hsl(25 50% 28% / 0.5),
+      0 16px 40px -10px hsl(32 52% 50% / 0.75);
   }
 
   .glass-primary .glass-button-shadow {
-    background: hsl(0 0% 80% / 0.5);
+    background: hsl(32 52% 53% / 0.5);
     opacity: 0.55;
   }
 
@@ -275,8 +280,8 @@
     overflow: hidden;
     pointer-events: none;
     background:
-      radial-gradient(90% 60% at 50% -10%, hsl(0 0% 13% / 0.8), transparent 70%),
-      hsl(0 0% 4%);
+      radial-gradient(90% 60% at 50% -10%, hsl(35 61% 90% / 0.7), transparent 70%),
+      hsl(37 44% 96%);
   }
 
   .spotlight-overlay {
@@ -342,8 +347,8 @@
     height: min(46vw, 520px);
     background: radial-gradient(
       circle at center,
-      rgba(226, 226, 236, 0.42) 0%,
-      rgba(226, 226, 236, 0) 60%
+      rgba(197, 139, 71, 0.22) 0%,
+      rgba(197, 139, 71, 0) 60%
     );
     animation: spot-drift-a 28s ease-in-out infinite alternate;
   }
@@ -355,8 +360,8 @@
     height: min(42vw, 480px);
     background: radial-gradient(
       circle at center,
-      rgba(255, 255, 255, 0.34) 0%,
-      rgba(255, 255, 255, 0) 60%
+      rgba(231, 200, 155, 0.42) 0%,
+      rgba(231, 200, 155, 0) 60%
     );
     animation: spot-drift-b 34s ease-in-out infinite alternate;
   }
@@ -368,8 +373,8 @@
     height: min(52vw, 560px);
     background: radial-gradient(
       circle at center,
-      rgba(176, 176, 190, 0.38) 0%,
-      rgba(176, 176, 190, 0) 62%
+      rgba(160, 111, 51, 0.2) 0%,
+      rgba(160, 111, 51, 0) 62%
     );
     animation: spot-drift-c 40s ease-in-out infinite alternate;
   }

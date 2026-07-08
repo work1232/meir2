@@ -3,8 +3,11 @@
   "configurations": [
     {
       "name": "studio-m",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "set PATH=C:\\Users\\meir\\.local\\node;%PATH% && npm run dev"
+      ],
       "autoPort": true
     }
   ]

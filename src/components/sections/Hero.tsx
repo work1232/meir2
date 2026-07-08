@@ -68,9 +68,9 @@ export function Hero() {
         className="absolute inset-0 h-full w-full object-cover"
       />
 
-      {/* Overlays */}
-      <div className="absolute inset-0 bg-background/70" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
+      {/* Overlays — warm espresso wash, fading into the cream page below */}
+      <div className="absolute inset-0 bg-[#2E1E15]/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#2E1E15]/50 via-[#2E1E15]/55 to-background" />
       <div className="absolute inset-0 halo" />
       <div className="pointer-events-none absolute inset-0 grain" />
 
@@ -89,12 +89,12 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
           </span>
-          <span className="text-sm font-medium text-foreground/90">
+          <span className="text-sm font-medium text-white/90">
             {t.hero.badge}
           </span>
         </motion.div>
 
-        <h1 className="mx-auto max-w-5xl text-center text-4xl font-bold leading-[1.05] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+        <h1 className="mx-auto max-w-5xl text-center text-4xl font-bold leading-[1.05] text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
           {/* Outer spans: scroll-linked depth (each line at a different
               "distance"). Inner spans: the one-time entrance animation. */}
           <motion.span className="block" style={depth(y1, s1)}>
@@ -133,7 +133,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mt-7 max-w-2xl text-center text-base text-muted-foreground sm:text-lg"
+          className="mx-auto mt-7 max-w-2xl text-center text-base text-white/75 sm:text-lg"
         >
           {t.hero.subtitle}
         </motion.p>
@@ -177,12 +177,12 @@ export function Hero() {
             <TiltCard
               key={s.label}
               max={12}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-5 text-center"
+              className="rounded-2xl border border-white/15 bg-white/[0.06] px-3 py-5 text-center"
             >
-              <div className="font-display text-2xl font-bold text-foreground sm:text-4xl">
+              <div className="font-display text-2xl font-bold text-white sm:text-4xl">
                 {s.value}
               </div>
-              <div className="mt-1 text-xs text-muted-foreground sm:text-sm">
+              <div className="mt-1 text-xs text-white/65 sm:text-sm">
                 {s.label}
               </div>
             </TiltCard>

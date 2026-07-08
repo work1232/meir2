@@ -56,8 +56,8 @@ export function Contact() {
         src="/call2.mp4"
         className="absolute inset-0 h-full w-full object-cover opacity-[0.75]"
       />
-      <div className="absolute inset-0 bg-background/40" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/30 to-background" />
+      <div className="absolute inset-0 bg-[#2E1E15]/55" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-[#2E1E15]/35 to-background" />
       <div className="pointer-events-none absolute inset-0 halo" />
       <div className="container-x relative z-10">
         <div className="glass-panel overflow-hidden rounded-[2rem]">
@@ -81,9 +81,9 @@ export function Contact() {
                     href={m.href}
                     target={m.href.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer"
-                    className="lift-3d group flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-3 hover:border-primary/40 hover:bg-white/[0.06] lg:gap-4 lg:rounded-2xl lg:p-4"
+                    className="lift-3d group flex items-center gap-2.5 rounded-xl border border-black/10 bg-[#FAF7F2] p-3 hover:border-primary/40 hover:bg-[#E7C89B]/20 lg:gap-4 lg:rounded-2xl lg:p-4"
                   >
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-white to-[#8b8b96] text-neutral-900 lg:h-11 lg:w-11 lg:rounded-xl">
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-[#E7C89B] to-[#C58B47] text-white lg:h-11 lg:w-11 lg:rounded-xl">
                       <m.icon className="h-4 w-4 lg:h-5 lg:w-5" />
                     </span>
                     <span className="min-w-0">
@@ -100,14 +100,14 @@ export function Contact() {
             </div>
 
             {/* Right — form */}
-            <div className="border-t border-white/10 bg-black/20 p-5 sm:p-8 md:p-12 lg:border-s lg:border-t-0">
+            <div className="border-t border-black/10 bg-black/[0.03] p-5 sm:p-8 md:p-12 lg:border-s lg:border-t-0">
               {sent ? (
                 <div
                   role="status"
                   aria-live="polite"
                   className="flex h-full min-h-[320px] flex-col items-center justify-center text-center"
                 >
-                  <span className="grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-white to-[#9a9aa4] text-neutral-900">
+                  <span className="grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-[#E7C89B] to-[#C58B47] text-white">
                     <Check className="h-8 w-8" strokeWidth={3} />
                   </span>
                   <p className="mt-6 text-lg font-medium">{t.contact.form.sent}</p>
@@ -128,7 +128,7 @@ export function Contact() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       autoComplete="name"
-                      className="h-12 w-full rounded-xl border border-white/12 bg-white/5 px-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
+                      className="h-12 w-full rounded-xl border border-black/10 bg-white px-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
                       placeholder={t.contact.form.name}
                     />
                   </div>
@@ -144,7 +144,7 @@ export function Contact() {
                       onChange={(e) => setEmail(e.target.value)}
                       autoComplete="email"
                       dir="ltr"
-                      className="h-12 w-full rounded-xl border border-white/12 bg-white/5 px-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
+                      className="h-12 w-full rounded-xl border border-black/10 bg-white px-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
                       placeholder="you@email.com"
                     />
                   </div>
@@ -158,7 +158,7 @@ export function Contact() {
                       rows={4}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      className="w-full resize-none rounded-xl border border-white/12 bg-white/5 px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
+                      className="w-full resize-none rounded-xl border border-black/10 bg-white px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
                       placeholder={t.contact.form.message}
                     />
                   </div>

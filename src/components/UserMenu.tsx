@@ -37,7 +37,7 @@ export function UserMenu() {
     return (
       <button
         onClick={() => openAuth()}
-        className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-white/10"
+        className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20"
       >
         <User className="h-4 w-4" />
         <span className="hidden sm:inline">{t.auth.signIn}</span>
@@ -58,7 +58,7 @@ export function UserMenu() {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={t.auth.account}
-        className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-white to-[#8b8b96] text-sm font-bold text-neutral-900 shadow-lg shadow-white/20 transition-transform hover:scale-105"
+        className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-[#E7C89B] to-[#C58B47] text-sm font-bold text-[#2E1E15] shadow-lg shadow-[#C58B47]/30 transition-transform hover:scale-105"
       >
         {initials}
       </button>
@@ -94,7 +94,7 @@ export function UserMenu() {
                 signOut();
                 setOpen(false);
               }}
-              className="flex w-full items-center gap-2 rounded-xl border-t border-white/10 px-3 py-3 text-sm font-medium text-foreground/90 transition-colors hover:bg-white/5"
+              className="flex w-full items-center gap-2 rounded-xl border-t border-black/10 px-3 py-3 text-sm font-medium text-foreground/90 transition-colors hover:bg-black/5"
             >
               <LogOut className="h-4 w-4" />
               {t.auth.logout}
