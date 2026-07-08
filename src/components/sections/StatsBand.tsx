@@ -67,7 +67,7 @@ export function StatsBand() {
   const { t } = useLang();
 
   return (
-    <section aria-label="stats" className="border-y border-[#C58B47]/15 bg-[#E7C89B]/25 py-12 sm:py-16">
+    <section aria-label="stats" className="border-y border-[#2968DB]/15 bg-[#C9D4E4]/25 py-12 sm:py-16">
       <div className="container-x grid grid-cols-2 gap-y-10 md:grid-cols-5">
         {t.statsBand.map((stat, i) => {
           const Icon = ICONS[i % ICONS.length];
@@ -75,7 +75,7 @@ export function StatsBand() {
             <div
               key={stat.label}
               className={`flex flex-col items-center gap-2.5 text-center ${
-                i > 0 ? "md:border-s md:border-[#C58B47]/20" : ""
+                i > 0 ? "md:border-s md:border-[#2968DB]/20" : ""
               } ${i === t.statsBand.length - 1 ? "col-span-2 md:col-span-1" : ""}`}
             >
               <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />

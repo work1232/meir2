@@ -56,13 +56,13 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-[#2E1E15] bg-[#2E1E15]">
-      <div className="container-x py-16">
+    <footer className="border-t border-[#0D1626] bg-[#0D1626]">
+      <div className="container-x py-12">
         <div className="grid gap-10 text-center sm:grid-cols-2 sm:text-start lg:grid-cols-4">
           {/* Brand + socials */}
           <div>
             <div className="flex items-center justify-center gap-2 sm:justify-start">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-[#E7C89B] to-[#C58B47] font-display text-lg font-bold text-[#2E1E15]">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-[#C9D4E4] to-[#2968DB] font-display text-lg font-bold text-[#0D1626]">
                 {siteConfig.brand.replace(/[^A-Za-z]/g, "").slice(-1) || "M"}
               </span>
               <span className="font-display text-lg font-bold text-white">
@@ -80,7 +80,7 @@ export function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={s.label}
-                  className="lift-3d grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-white/60 hover:border-[#E7C89B]/50 hover:text-white"
+                  className="lift-3d grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-white/60 hover:border-[#C9D4E4]/50 hover:text-white"
                 >
                   <s.icon className="h-5 w-5" />
                 </a>
@@ -90,7 +90,7 @@ export function Footer() {
 
           {/* Quick links */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-[#E7C89B]">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-[#C9D4E4]">
               {t.footer.quickTitle}
             </h3>
             <ul className="mt-4 space-y-2.5">
@@ -109,7 +109,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-[#E7C89B]">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-[#C9D4E4]">
               {t.footer.servicesTitle}
             </h3>
             <ul className="mt-4 space-y-2.5">
@@ -128,7 +128,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-[#E7C89B]">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-[#C9D4E4]">
               {t.footer.contactTitle}
             </h3>
             <ul className="mt-4 space-y-3">

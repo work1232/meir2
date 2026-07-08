@@ -39,14 +39,14 @@ export function Navbar() {
       <div
         className={`transition-all duration-500 ${
           scrolled
-            ? "border-b border-white/10 bg-[#2E1E15]/85 backdrop-blur-xl"
+            ? "border-b border-white/10 bg-[#0D1626]/85 backdrop-blur-xl"
             : "border-b border-transparent bg-transparent"
         }`}
       >
         <nav className="container-x relative flex h-16 items-center justify-between md:h-20">
           {/* Brand */}
           <a href="#top" className="group z-10 flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-[#E7C89B] to-[#C58B47] font-display text-sm font-bold text-[#2E1E15] shadow-lg shadow-[#C58B47]/30">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-[#C9D4E4] to-[#2968DB] font-display text-sm font-bold text-[#0D1626] shadow-lg shadow-[#2968DB]/30">
               {brandInitials}
             </span>
             <span className="font-display text-lg font-bold tracking-tight text-white">
@@ -62,12 +62,12 @@ export function Navbar() {
                 panelHeight={48}
                 magnification={62}
                 distance={130}
-                className="border border-white/10 bg-[#2E1E15]/85"
+                className="border border-white/10 bg-[#0D1626]/85"
               >
                 {links.map((l) => (
                   <a key={l.href} href={l.href} aria-label={l.label}>
                     <DockItem className="aspect-square rounded-full border border-white/10 bg-white/10 transition-colors hover:bg-white/[0.18]">
-                      <DockLabel className="border-white/10 bg-[#2E1E15]/95">
+                      <DockLabel className="border-white/10 bg-[#0D1626]/95">
                         {l.label}
                       </DockLabel>
                       <DockIcon>

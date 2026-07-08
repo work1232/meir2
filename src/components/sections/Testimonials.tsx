@@ -11,7 +11,7 @@ export function Testimonials() {
   const { t } = useLang();
 
   return (
-    <section id="testimonials" className="relative py-20 sm:py-24">
+    <section id="testimonials" className="relative py-14 sm:py-16">
       <div className="container-x">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
@@ -22,7 +22,7 @@ export function Testimonials() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
           {t.testimonials.items.map((item, i) => {
             const initials = item.name
               .split(/\s+/)
@@ -33,13 +33,13 @@ export function Testimonials() {
               <Reveal key={item.name} delay={i * 0.1} className="h-full">
                 <TiltCard
                   max={7}
-                  className="flex h-full flex-col rounded-2xl border border-black/5 bg-white p-7 shadow-lg shadow-[#2E1E15]/5"
+                  className="flex h-full flex-col rounded-2xl border border-black/5 bg-white p-7 shadow-lg shadow-[#0D1626]/5"
                 >
                   <div className="flex gap-1" aria-label="5/5">
                     {Array.from({ length: 5 }).map((_, s) => (
                       <Star
                         key={s}
-                        className="h-4 w-4 fill-[#C58B47] text-[#C58B47]"
+                        className="h-4 w-4 fill-[#2968DB] text-[#2968DB]"
                       />
                     ))}
                   </div>
@@ -47,7 +47,7 @@ export function Testimonials() {
                     “{item.text}”
                   </p>
                   <div className="mt-6 flex items-center gap-3 border-t border-black/5 pt-5">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#E7C89B] to-[#C58B47] text-sm font-bold text-[#2E1E15]">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#C9D4E4] to-[#2968DB] text-sm font-bold text-[#0D1626]">
                       {initials}
                     </span>
                     <span>

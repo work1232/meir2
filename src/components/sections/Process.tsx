@@ -28,14 +28,14 @@ export function Process() {
   const roadScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="process" className="relative overflow-hidden py-24 sm:py-32">
+    <section id="process" className="relative overflow-hidden py-14 sm:py-20">
       {/* Background video — "code" */}
       <BackgroundVideo
         src="/code.mp4"
         className="absolute inset-0 h-full w-full object-cover opacity-[0.7]"
       />
-      <div className="absolute inset-0 bg-[#2E1E15]/65" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-[#2E1E15]/40 to-background" />
+      <div className="absolute inset-0 bg-[#0D1626]/65" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-[#0D1626]/40 to-background" />
 
       <div className="container-x relative z-10">
         <Reveal className="mx-auto max-w-2xl text-center">
@@ -54,7 +54,7 @@ export function Process() {
           <motion.div
             aria-hidden="true"
             style={{ scaleX: roadScale }}
-            className="absolute inset-x-0 top-8 hidden h-px origin-left bg-gradient-to-r from-[#E7C89B]/0 via-[#E7C89B]/90 to-[#E7C89B]/0 shadow-[0_0_12px_rgba(231,200,155,0.45)] rtl:origin-right lg:block"
+            className="absolute inset-x-0 top-8 hidden h-px origin-left bg-gradient-to-r from-[#C9D4E4]/0 via-[#C9D4E4]/90 to-[#C9D4E4]/0 shadow-[0_0_12px_rgba(201,212,228,0.45)] rtl:origin-right lg:block"
           />
 
           <div className="grid gap-x-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
@@ -63,11 +63,11 @@ export function Process() {
               return (
                 <Reveal key={step.no} delay={i * 0.08}>
                   <div className="relative flex flex-col items-center text-center">
-                    <div className="relative z-10 grid h-16 w-16 place-items-center rounded-full border border-[#E7C89B]/40 bg-background text-primary shadow-lg shadow-black/40">
+                    <div className="relative z-10 grid h-16 w-16 place-items-center rounded-full border border-[#C9D4E4]/40 bg-background text-primary shadow-lg shadow-black/40">
                       <Icon className="h-6 w-6" strokeWidth={1.5} />
                       <span className="absolute inset-0 rounded-full bg-primary/10 blur-md" />
                     </div>
-                    <span className="mt-4 font-mono text-xs font-bold tracking-widest text-[#E7C89B]/80">
+                    <span className="mt-4 font-mono text-xs font-bold tracking-widest text-[#C9D4E4]/80">
                       {step.no}
                     </span>
                     <h3 className="mt-2 text-base font-bold text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.7)] lg:text-lg">

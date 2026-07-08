@@ -12,7 +12,7 @@ export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative py-20 sm:py-24">
+    <section id="faq" className="relative py-14 sm:py-16">
       <div className="container-x">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
@@ -23,14 +23,14 @@ export function Faq() {
           </h2>
         </Reveal>
 
-        <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-3">
+        <div className="mx-auto mt-8 grid max-w-5xl items-start gap-3 lg:grid-cols-2">
           {t.faq.items.map((item, i) => {
             const isOpen = open === i;
             return (
               <Reveal key={item.q} delay={i * 0.05}>
                 <div
                   className={`overflow-hidden rounded-2xl border bg-white transition-colors ${
-                    isOpen ? "border-primary/40 shadow-lg shadow-[#C58B47]/10" : "border-black/5"
+                    isOpen ? "border-primary/40 shadow-lg shadow-[#2968DB]/10" : "border-black/5"
                   }`}
                 >
                   <button

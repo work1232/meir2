@@ -214,12 +214,12 @@ export const PricingCard = ({
     backdrop-blur-[14px] bg-gradient-to-br rounded-xl md:rounded-2xl shadow-xl flex-1 md:max-w-xs px-3 py-4 md:px-7 md:py-8 flex flex-col transition-all duration-300
     from-black/5 to-black/0 border border-black/10
     dark:from-white/10 dark:to-white/5 dark:border-white/10 dark:backdrop-brightness-[0.91]
-    ${isPopular ? 'relative md:scale-105 ring-2 ring-[#C58B47]/50 bg-white shadow-2xl' : 'bg-white/70'}
+    ${isPopular ? 'relative md:scale-105 ring-2 ring-[#2968DB]/50 bg-white shadow-2xl' : 'bg-white/70'}
   `;
   const buttonClasses = `
     mt-auto w-full py-1.5 md:py-2.5 rounded-lg md:rounded-xl font-semibold text-[11px] md:text-[14px] transition font-sans
     ${buttonVariant === 'primary'
-      ? 'bg-gradient-to-b from-[#d29a55] to-[#b57a38] hover:from-[#dba763] hover:to-[#c58b47] text-white shadow-lg shadow-[#C58B47]/30'
+      ? 'bg-gradient-to-b from-[#4a82e8] to-[#2458c7] hover:from-[#5b90f0] hover:to-[#2968db] text-white shadow-lg shadow-[#2968DB]/30'
       : 'bg-black/5 hover:bg-black/10 text-foreground border border-black/15'
     }
   `;
@@ -227,7 +227,7 @@ export const PricingCard = ({
   return (
     <div className={cardClasses.trim()}>
       {isPopular && (
-        <div className="absolute -top-2 right-2 md:-top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 text-[8px] md:text-[12px] font-semibold rounded-full bg-[#C58B47] text-white dark:text-white">
+        <div className="absolute -top-2 right-2 md:-top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 text-[8px] md:text-[12px] font-semibold rounded-full bg-[#2968DB] text-white dark:text-white">
           {popularText}
         </div>
       )}
@@ -243,7 +243,7 @@ export const PricingCard = ({
       <ul className="flex flex-col gap-1 md:gap-2 text-[10px] md:text-[14px] leading-snug text-foreground/90 mb-3 md:mb-6 font-sans">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-1 md:gap-2">
-            <CheckIcon className="text-[#C58B47] w-3 h-3 md:w-4 md:h-4 shrink-0 mt-0.5" /> <span>{feature}</span>
+            <CheckIcon className="text-[#2968DB] w-3 h-3 md:w-4 md:h-4 shrink-0 mt-0.5" /> <span>{feature}</span>
           </li>
         ))}
       </ul>

@@ -39,7 +39,7 @@ export function Work() {
   }, []);
 
   return (
-    <section id="work" className="relative py-24 sm:py-32">
+    <section id="work" className="relative py-14 sm:py-20">
       {/* ambient glow */}
       <div className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 mx-auto h-[420px] max-w-4xl -translate-y-1/2 rounded-full bg-primary/15 blur-[140px]" />
 
@@ -54,9 +54,9 @@ export function Work() {
           <p className="mt-5 text-lg text-muted-foreground">{t.work.desc}</p>
         </Reveal>
 
-        <Reveal delay={0.1} className="mx-auto mt-14 max-w-5xl">
+        <Reveal delay={0.1} className="mx-auto mt-10 max-w-5xl">
           <Panel3D from={-9}>
-          <div className="rounded-[2rem] border border-black/10 bg-white p-2 shadow-2xl shadow-[#2E1E15]/15 sm:p-3">
+          <div className="rounded-[2rem] border border-black/10 bg-white p-2 shadow-2xl shadow-[#0D1626]/15 sm:p-3">
             <div className="relative overflow-hidden rounded-[1.5rem]">
               <ImageComparison
                 className="aspect-[16/10] w-full bg-[#0d0d14]"
@@ -103,7 +103,7 @@ export function Work() {
         </Reveal>
 
         {/* Featured live project ------------------------------------------ */}
-        <div className="mx-auto mt-24 max-w-5xl">
+        <div className="mx-auto mt-16 max-w-5xl">
           <Reveal className="grid items-end gap-6 md:grid-cols-[1fr_auto]">
             <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
@@ -146,7 +146,7 @@ export function Work() {
 
           <Reveal delay={0.1} className="mt-8">
             <Panel3D from={9}>
-            <div className="overflow-hidden rounded-2xl border border-[#2E1E15]/40 bg-[#2E1E15] shadow-2xl shadow-[#2E1E15]/30">
+            <div className="overflow-hidden rounded-2xl border border-[#0D1626]/40 bg-[#0D1626] shadow-2xl shadow-[#0D1626]/30">
               {/* Browser chrome */}
               <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.04] px-4 py-3">
                 <div className="flex gap-1.5">
@@ -177,7 +177,7 @@ export function Work() {
                     referrerPolicy="no-referrer"
                   />
                 ) : (
-                  <div className="absolute inset-0 grid place-items-center bg-[#2E1E15]">
+                  <div className="absolute inset-0 grid place-items-center bg-[#0D1626]">
                     <span className="loader" />
                   </div>
                 )}

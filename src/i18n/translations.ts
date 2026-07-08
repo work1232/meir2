@@ -19,6 +19,21 @@ export type Content = {
     items: { title: string; desc: string }[];
   };
   statsBand: { value: string; label: string }[];
+  whyUs: {
+    kicker: string;
+    title: string;
+    desc: string;
+    points: string[];
+    cta: string;
+  };
+  promo: {
+    kicker: string;
+    title: string;
+    desc: string;
+    cta: string;
+    note: string;
+    waText: string;
+  };
   testimonials: {
     kicker: string;
     title: string;
@@ -187,6 +202,26 @@ export const translations: Record<Lang, Content> = {
       { value: "+35", label: "לקוחות קבועים" },
       { value: "5★", label: "דירוג ממוצע" },
     ],
+    whyUs: {
+      kicker: "למה אני?",
+      title: "למה לבחור בי?",
+      desc: "כי אתר הוא לא עוד הוצאה — הוא נכס שמייצר לקוחות. אני בונה אותו כמו שבונים מוצר פרימיום: בקפידה, במהירות, ובלי פשרות.",
+      points: [
+        "עיצוב ברמה של מותגי-על — בלי תבניות",
+        "מהירות טעינה וביצועים בלי פשרות",
+        "ליווי אישי 1-על-1 עד ההשקה ואחריה",
+        "מחיר שקוף — בלי הפתעות בדרך",
+      ],
+      cta: "צפו בעבודות",
+    },
+    promo: {
+      kicker: "זמינות החודש",
+      title: "פנוי ל-2 פרויקטים בלבד החודש",
+      desc: "היומן מתמלא מהר — מי שסוגר החודש נכנס ישר לעבודה, בלי רשימת המתנה.",
+      cta: "שריינו שיחת היכרות חינם",
+      note: "ללא התחייבות · מענה תוך שעות",
+      waText: "היי מאיר! אשמח לשריין שיחת היכרות 🙂",
+    },
     testimonials: {
       kicker: "לקוחות מספרים",
       title: "מה אומרים עליי",
@@ -447,6 +482,26 @@ export const translations: Record<Lang, Content> = {
       { value: "35+", label: "Returning clients" },
       { value: "5★", label: "Average rating" },
     ],
+    whyUs: {
+      kicker: "Why me?",
+      title: "Why choose me?",
+      desc: "Because a website isn't another expense — it's an asset that generates clients. I build it like a premium product: carefully, fast, with zero compromises.",
+      points: [
+        "Top-brand level design — no templates",
+        "Loading speed and performance without compromise",
+        "Personal 1-on-1 guidance through launch and beyond",
+        "Transparent pricing — no surprises along the way",
+      ],
+      cta: "See the work",
+    },
+    promo: {
+      kicker: "This month's availability",
+      title: "Open for only 2 projects this month",
+      desc: "The calendar fills up fast — close this month and go straight into production, no waiting list.",
+      cta: "Book a free intro call",
+      note: "No commitment · reply within hours",
+      waText: "Hi Meir! I'd love to book an intro call 🙂",
+    },
     testimonials: {
       kicker: "Client stories",
       title: "What clients say",

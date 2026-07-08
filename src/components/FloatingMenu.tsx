@@ -23,7 +23,7 @@ export function FloatingMenu() {
 
       <MenuContainer
         direction="up"
-        triggerClassName="bg-gradient-to-br from-[#E7C89B] to-[#C58B47] ring-1 ring-[#E7C89B]/60"
+        triggerClassName="bg-gradient-to-br from-[#C9D4E4] to-[#2968DB] ring-1 ring-[#C9D4E4]/60"
       >
         {/* Toggle */}
         <MenuItem

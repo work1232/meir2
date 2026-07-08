@@ -7,6 +7,7 @@ import { FloatingMenu } from "@/components/FloatingMenu";
 import { Hero } from "@/components/sections/Hero";
 import { Marquee } from "@/components/sections/Marquee";
 import { Approach } from "@/components/sections/Approach";
+import { WhyUs } from "@/components/sections/WhyUs";
 import { StatsBand } from "@/components/sections/StatsBand";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Faq } from "@/components/sections/Faq";
@@ -31,6 +32,7 @@ export default function App() {
         <Scroll3D><Marquee /></Scroll3D>
         <Scroll3D><Approach /></Scroll3D>
         <Scroll3D><About /></Scroll3D>
+        <Scroll3D><WhyUs /></Scroll3D>
         <Scroll3D><Work /></Scroll3D>
         <Scroll3D><StatsBand /></Scroll3D>
         <Scroll3D><Process /></Scroll3D>

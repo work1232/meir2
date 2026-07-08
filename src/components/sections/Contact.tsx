@@ -50,14 +50,14 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden py-24 sm:py-32">
+    <section id="contact" className="relative overflow-hidden py-14 sm:py-20">
       {/* Background video — "call 2" */}
       <BackgroundVideo
         src="/call2.mp4"
         className="absolute inset-0 h-full w-full object-cover opacity-[0.75]"
       />
-      <div className="absolute inset-0 bg-[#2E1E15]/55" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-[#2E1E15]/35 to-background" />
+      <div className="absolute inset-0 bg-[#0D1626]/55" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-[#0D1626]/35 to-background" />
       <div className="pointer-events-none absolute inset-0 halo" />
       <div className="container-x relative z-10">
         <div className="glass-panel overflow-hidden rounded-[2rem]">
@@ -81,9 +81,9 @@ export function Contact() {
                     href={m.href}
                     target={m.href.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer"
-                    className="lift-3d group flex items-center gap-2.5 rounded-xl border border-black/10 bg-[#FAF7F2] p-3 hover:border-primary/40 hover:bg-[#E7C89B]/20 lg:gap-4 lg:rounded-2xl lg:p-4"
+                    className="lift-3d group flex items-center gap-2.5 rounded-xl border border-black/10 bg-[#F2F4F8] p-3 hover:border-primary/40 hover:bg-[#C9D4E4]/20 lg:gap-4 lg:rounded-2xl lg:p-4"
                   >
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-[#E7C89B] to-[#C58B47] text-white lg:h-11 lg:w-11 lg:rounded-xl">
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-[#C9D4E4] to-[#2968DB] text-white lg:h-11 lg:w-11 lg:rounded-xl">
                       <m.icon className="h-4 w-4 lg:h-5 lg:w-5" />
                     </span>
                     <span className="min-w-0">
@@ -107,7 +107,7 @@ export function Contact() {
                   aria-live="polite"
                   className="flex h-full min-h-[320px] flex-col items-center justify-center text-center"
                 >
-                  <span className="grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-[#E7C89B] to-[#C58B47] text-white">
+                  <span className="grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-[#C9D4E4] to-[#2968DB] text-white">
                     <Check className="h-8 w-8" strokeWidth={3} />
                   </span>
                   <p className="mt-6 text-lg font-medium">{t.contact.form.sent}</p>

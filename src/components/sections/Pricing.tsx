@@ -86,12 +86,12 @@ export function Pricing() {
   }));
 
   return (
-    <section id="pricing" className="relative w-full overflow-hidden py-24 sm:py-32">
+    <section id="pricing" className="relative w-full overflow-hidden py-14 sm:py-20">
       {/* Animated WebGL background — desktop only. On mobile we skip it so iOS
           Safari's single WebGL context stays free for the Spline 3D robot, and
           use a light CSS glow instead. */}
       {isMobile ? (
-        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(60%_50%_at_50%_45%,rgba(197,139,71,0.14),transparent_70%)]" />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(60%_50%_at_50%_45%,rgba(41,104,219,0.14),transparent_70%)]" />
       ) : (
         <ShaderCanvas />
       )}
@@ -105,7 +105,7 @@ export function Pricing() {
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
             {t.pricing.kicker}
           </span>
-          <h2 className="mt-5 bg-gradient-to-r from-[#2E1E15] via-[#7a5230] to-[#C58B47] bg-clip-text font-display text-4xl font-extralight tracking-tight text-transparent md:text-6xl">
+          <h2 className="mt-5 bg-gradient-to-r from-[#0D1626] via-[#3A4A66] to-[#2968DB] bg-clip-text font-display text-4xl font-extralight tracking-tight text-transparent md:text-6xl">
             {t.pricing.title}
           </h2>
           <p className="mt-4 text-lg text-foreground/80">{t.pricing.desc}</p>

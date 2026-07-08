@@ -69,15 +69,15 @@ export function Hero() {
       />
 
       {/* Overlays — warm espresso wash, fading into the cream page below */}
-      <div className="absolute inset-0 bg-[#2E1E15]/60" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#2E1E15]/50 via-[#2E1E15]/55 to-background" />
+      <div className="absolute inset-0 bg-[#0D1626]/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0D1626]/50 via-[#0D1626]/55 to-background" />
       <div className="absolute inset-0 halo" />
       <div className="pointer-events-none absolute inset-0 grain" />
 
       {/* Content (mouse-parallax target on desktop) */}
       <div
         ref={parallaxRef}
-        className="container-x relative z-10 flex min-h-[100svh] flex-col justify-center pt-28 pb-20 transition-transform duration-200 ease-out will-change-transform"
+        className="container-x relative z-10 flex min-h-[100svh] flex-col justify-center pt-24 pb-14 transition-transform duration-200 ease-out will-change-transform"
       >
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -171,7 +171,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mt-16 grid w-full max-w-2xl grid-cols-3 gap-4"
+          className="mx-auto mt-10 grid w-full max-w-2xl grid-cols-3 gap-4"
         >
           {t.hero.stats.map((s) => (
             <TiltCard

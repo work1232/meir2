@@ -29,9 +29,11 @@ export function Scroll3D({ children, className }: Scroll3DProps) {
   });
 
   // 0 → section entering from the bottom, 0.5 → centered, 1 → leaving above.
-  const rotateX = useTransform(scrollYProgress, [0, 0.32, 0.68, 1], [12, 0, 0, -9]);
-  const scale = useTransform(scrollYProgress, [0, 0.32, 0.68, 1], [0.93, 1, 1, 0.96]);
-  const opacity = useTransform(scrollYProgress, [0, 0.22, 0.78, 1], [0.5, 1, 1, 0.6]);
+  // Kept SUBTLE on purpose: neighbouring sections must stay clearly visible
+  // so the page feels dense (several things on screen), not one floating card.
+  const rotateX = useTransform(scrollYProgress, [0, 0.32, 0.68, 1], [6, 0, 0, -4]);
+  const scale = useTransform(scrollYProgress, [0, 0.32, 0.68, 1], [0.975, 1, 1, 0.99]);
+  const opacity = useTransform(scrollYProgress, [0, 0.22, 0.78, 1], [0.88, 1, 1, 0.92]);
 
   return (
     <div ref={ref} className={className} style={{ perspective: "1400px" }}>

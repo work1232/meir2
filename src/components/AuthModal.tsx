@@ -59,7 +59,7 @@ export function AuthModal() {
   };
 
   const inputClass =
-    "h-12 w-full rounded-xl border border-black/10 bg-[#FAF7F2] ps-11 pe-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30";
+    "h-12 w-full rounded-xl border border-black/10 bg-[#F2F4F8] ps-11 pe-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30";
 
   return (
     <AnimatePresence>
@@ -95,7 +95,7 @@ export function AuthModal() {
               <X className="h-5 w-5" />
             </button>
 
-            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-[#E7C89B] to-[#C58B47] text-white shadow-lg shadow-[#C58B47]/30">
+            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-[#C9D4E4] to-[#2968DB] text-white shadow-lg shadow-[#2968DB]/30">
               <User className="h-6 w-6" />
             </span>
             <h2 className="mt-5 text-2xl font-bold">{t.auth.authTitle}</h2>
@@ -144,7 +144,7 @@ export function AuthModal() {
               {error && (
                 <p
                   role="alert"
-                  className="rounded-xl border border-[#C58B47]/40 bg-[#C58B47]/10 px-4 py-3 text-sm font-medium text-[#7a4a17]"
+                  className="rounded-xl border border-[#2968DB]/40 bg-[#2968DB]/10 px-4 py-3 text-sm font-medium text-[#1e3f8f]"
                 >
                   {error}
                 </p>

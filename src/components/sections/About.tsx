@@ -35,7 +35,7 @@ function MobileServices({
             aria-hidden="true"
             className="absolute inset-0 h-full w-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2E1E15] via-[#2E1E15]/85 to-[#2E1E15]/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0D1626] via-[#0D1626]/85 to-[#0D1626]/30" />
           <div className="relative flex h-full flex-col justify-end p-3">
             <span className="mb-1.5 grid h-7 w-7 place-items-center rounded-full border border-primary/30 bg-primary/15 text-xs font-bold text-primary">
               {i + 1}
@@ -134,14 +134,14 @@ export function About() {
   );
 
   return (
-    <section id="services" className="relative py-24 sm:py-32">
+    <section id="services" className="relative py-14 sm:py-20">
       <div className="container-x">
         {/* About — "מי אני" with interactive 3D scene */}
         <Reveal>
-          <Card className="relative w-full overflow-hidden rounded-3xl border-[#2E1E15] bg-[#2E1E15] shadow-2xl shadow-[#2E1E15]/40">
+          <Card className="relative w-full overflow-hidden rounded-3xl border-[#0D1626] bg-[#0D1626] shadow-2xl shadow-[#0D1626]/40">
             <Spotlight
               className="-top-40 left-0 md:-top-20 md:left-60"
-              fill="#E7C89B"
+              fill="#C9D4E4"
             />
 
             <div className="flex flex-col md:flex-row">
@@ -160,7 +160,7 @@ export function About() {
                 <ul className="mt-7 grid gap-3">
                   {t.about.points.map((p) => (
                     <li key={p} className="flex items-start gap-3">
-                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#E7C89B] to-[#C58B47] text-[#2E1E15]">
+                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#C9D4E4] to-[#2968DB] text-[#0D1626]">
                         <Check className="h-3.5 w-3.5" strokeWidth={3} />
                       </span>
                       <span className="text-base font-medium text-neutral-200">
@@ -186,7 +186,7 @@ export function About() {
         </Reveal>
 
         {/* Services */}
-        <div className="mt-28">
+        <div className="mt-16">
           <Reveal className="mx-auto max-w-2xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
               {t.about.servicesKicker}

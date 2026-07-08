@@ -13,7 +13,7 @@ export function Approach() {
   const { t } = useLang();
 
   return (
-    <section id="approach" className="relative py-24 sm:py-28">
+    <section id="approach" className="relative py-14 sm:py-16">
       <div className="container-x">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
@@ -23,17 +23,17 @@ export function Approach() {
             {t.approach.title}
           </h2>
           {/* short underline, like the reference */}
-          <span className="mx-auto mt-6 block h-0.5 w-16 rounded-full bg-gradient-to-r from-[#C58B47] to-[#E7C89B]" />
+          <span className="mx-auto mt-6 block h-0.5 w-16 rounded-full bg-gradient-to-r from-[#2968DB] to-[#C9D4E4]" />
         </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {t.approach.items.map((item, i) => {
             const Icon = ICONS[i % ICONS.length];
             return (
               <Reveal key={item.title} delay={i * 0.08} className="h-full">
                 <TiltCard
                   max={8}
-                  className="h-full rounded-2xl border border-black/5 bg-white p-7 text-center shadow-lg shadow-[#2E1E15]/5"
+                  className="h-full rounded-2xl border border-black/5 bg-white p-7 text-center shadow-lg shadow-[#0D1626]/5"
                 >
                   <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl border border-primary/25 bg-primary/10 text-primary">
                     <Icon className="h-6 w-6" strokeWidth={1.5} />

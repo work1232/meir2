@@ -14,18 +14,18 @@ export function CtaBand() {
   const Arrow = lang === "he" ? ArrowLeft : ArrowRight;
 
   return (
-    <section aria-label="cta" className="relative py-14 sm:py-20">
+    <section aria-label="cta" className="relative py-10 sm:py-14">
       <div className="container-x">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] bg-[#2E1E15] px-6 py-16 text-center shadow-2xl shadow-[#2E1E15]/40 sm:px-12 sm:py-20">
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#0D1626] px-6 py-16 text-center shadow-2xl shadow-[#0D1626]/40 sm:px-12 sm:py-20">
             {/* caramel glows */}
-            <div className="pointer-events-none absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-[#C58B47]/25 blur-[100px]" />
-            <div className="pointer-events-none absolute -bottom-24 right-1/4 h-72 w-72 rounded-full bg-[#E7C89B]/20 blur-[100px]" />
+            <div className="pointer-events-none absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-[#2968DB]/25 blur-[100px]" />
+            <div className="pointer-events-none absolute -bottom-24 right-1/4 h-72 w-72 rounded-full bg-[#C9D4E4]/20 blur-[100px]" />
 
             <h2 className="relative mx-auto max-w-3xl font-display text-3xl font-bold text-white sm:text-5xl">
               {t.ctaBand.title}
             </h2>
-            <p className="relative mx-auto mt-4 max-w-xl text-base text-[#E7C89B]/85 sm:text-lg">
+            <p className="relative mx-auto mt-4 max-w-xl text-base text-[#C9D4E4]/85 sm:text-lg">
               {t.ctaBand.subtitle}
             </p>
 
